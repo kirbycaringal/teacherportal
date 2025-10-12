@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        :root {
+            --maroon: #800000;
+            --white: #ffffff;
+        }
+        .text-maroon {
+            color: var(--maroon);
+        }
+        body {
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* Updated Sidebar Styles */
+        .sidebar {
+            background: linear-gradient(to bottom, #800000, #4d0000);
+            min-height: 100vh;
+            padding: 20px 0;
+            width: 250px;
+            position: fixed;
+            z-index: 100;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: none;
+        }
+        .sidebar a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background-color: #a00000;
+            color: white !important;
+        }
+        .sidebar a.active {
+            background-color: #a00000;
+        }
+        .university-name {
+            font-size: 14px;
+            line-height: 1.3;
+            padding: 0 15px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .sidebar-logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 80px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 50%;
+            background-color: white;
+            padding: 5px;
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: none;
+            background-color: #343a40;
+            border: none;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+        }
+        .toggle-btn i {
+            font-size: 1.25rem;
+            color: white;
+        }
+        
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to right, #800000, #a52a2a);
+            color: white;
+            padding: 15px 20px;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .mobile-header .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .mobile-header .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-header .header-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        /* Main Content Area */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            transition: all 0.3s;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .mobile-header {
+                display: block;
+            }
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -250px;
+                width: 250px;
+                transition: left 0.3s;
+                z-index: 1000;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main-content {
+                margin-left: 0;
+                margin-top: 60px;
+                width: 100%;
+                padding: 20px;
+            }
+            .toggle-btn {
+                display: none;
+            }
+        }
+
+        /* Rest of your existing styles */
+        .stat-card {
+            height: 100%;
+            border: none;
+            border-radius: 10px !important;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #800000;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Dashboard styles */
+        .dashboard-title {
+            color: var(--maroon);
+            font-weight: bold;
+        }
+
+        .dashboard-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: none;
+            width: 100%;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px !important;
+            overflow: hidden;
+        }
+        .btn-maroon {
+            background-color: var(--maroon);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-maroon:hover {
+            background-color: #a52a2a;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(128, 0, 0, 0.3);
+        }
+        .stats-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .profile-info {
+            margin-left: 20px;
+            flex-grow: 1;
+        }
+        .change-password-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        .fee-table th {
+            background-color: #800000;
+            color: white;
+        }
+        .table-secondary {
+            background-color: #f8f9fa;
+        }
+        .toggle-fees {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .toggle-fees i {
+            transition: transform 0.3s ease;
+        }
+        .fees-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .fees-content.collapsed {
+            max-height: 0;
+        }
+        .fees-content.expanded {
+            max-height: 2000px;
+        }
+        .subject-card {
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            background-color: white !important;
+        }
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-color: #800000;
+        }
+        .grade-input {
+            width: 70px;
+            text-align: center;
+            font-weight: 500;
+            border: 2px solid #dee2e6;
+            transition: all 0.2s;
+            border-radius: 6px;
+            padding: 0.4rem 0.5rem;
+        }
+        .grade-input:focus {
+            border-color: #800000;
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+            outline: none;
+        }
+        .grade-select {
+            width: 80px;
+            text-align: center;
+            font-weight: 600;
+            border: 2px solid #dee2e6;
+            transition: all 0.2s;
+            border-radius: 6px;
+            padding: 0.4rem 0.3rem;
+            background-color: white;
+            cursor: pointer;
+        }
+        .grade-select:focus {
+            border-color: #800000;
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+            outline: none;
+        }
+        .grade-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .status-completed {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #997404;
+        }
+        .status-passed {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        .status-failed {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        .grade-row {
+            transition: all 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .grade-row:hover {
+            background-color: rgba(128, 0, 0, 0.04);
+            transform: scale(1.005);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .grade-average {
+            font-weight: 700;
+            color: #800000;
+            font-size: 1.1rem;
+        }
+        .table-header th {
+            background-color: #800000 !important;
+            color: white !important;
+            font-weight: 600;
+            border-bottom: none;
+            padding: 1rem 0.75rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .floating-actions {
+            position: sticky;
+            bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+            border: 1px solid #e0e0e0;
+        }
+        .student-id-cell {
+            font-weight: 600;
+            color: #495057;
+        }
+        .student-name-cell {
+            font-weight: 500;
+            color: #212529;
+        }
+        .remarks-select {
+            width: 140px;
+            text-align: center;
+            font-weight: 600;
+            border: 2px solid #dee2e6;
+            transition: all 0.2s;
+            border-radius: 6px;
+            padding: 0.4rem 0.5rem;
+            background-color: white;
+            cursor: pointer;
+        }
+        .remarks-select:focus {
+            border-color: #800000;
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+            outline: none;
+        }
+        .remarks-select.status-passed {
+            color: #0f5132;
+            border-color: #d1e7dd;
+            background-color: #d1e7dd;
+        }
+        .remarks-select.status-failed {
+            color: #842029;
+            border-color: #f8d7da;
+            background-color: #f8d7da;
+        }
+        .remarks-select.status-incomplete {
+            color: #997404;
+            border-color: #fff3cd;
+            background-color: #fff3cd;
+        }
+        .section-divider {
+            margin: 40px 0;
+            border-top: 1px solid #dee2e6;
+        }
+        .filter-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+        }
+        .filter-reset-btn {
+            margin-left: 10px;
+            align-self: flex-end;
+            height: 38px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .student-count-badge {
+            background-color: #800000;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .btn-outline-primary {
+            color: #800000;
+            border-color: #800000;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .btn-outline-primary:hover {
+            color: white;
+            background-color: #800000;
+            border-color: #800000;
+        }
+        /* New styles for view functionality */
+        .grade-management-section {
+            display: none;
+        }
+        .grade-management-section.active {
+            display: block;
+        }
+        .back-to-classes {
+            margin-right: 15px;
+        }
+
+        /* Content adjustments */
+        .class-list {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        /* Card adjustments */
+        .card-body {
+            padding: 1.25rem;
+            background-color: white;
+        }
+        
+        /* Form control adjustments */
+        .form-control {
+            border-radius: 8px;
+            padding: 0.375rem 0.75rem;
+        }
+        
+        /* Button adjustments */
+        .btn {
+            border-radius: 8px;
+            padding: 0.375rem 0.75rem;
+        }
+
+        /* New styles for My Classes header */
+        .class-list > .d-flex {
+            background-color: #800000;
+            padding: 15px;
+            border-radius: 8px;
+            margin: -20px -20px 20px -20px;
+            color: white;
+        }
+
+        .class-list .btn-outline-secondary {
+            color: white;
+            border-color: white;
+            background-color: transparent;
+        }
+
+        .class-list .btn-outline-secondary:hover {
+            color: #800000;
+            background-color: white;
+            border-color: white;
+        }
+
+        .class-list select.form-control {
+            background-color: white;
+            border-color: #dee2e6;
+        }
+
+        .class-list .form-control-sm {
+            background-color: white;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            min-width: 180px;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            color: #495057;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(128, 0, 0, 0.1);
+            color: #800000;
+        }
+
+        .dropdown-item.active {
+            background-color: #800000;
+            color: white;
+        }
+
+        .dropdown-item.active:hover {
+            background-color: #a52a2a;
+            color: white;
+        }
+
+        .dropdown-toggle::after {
+            margin-left: 0.5rem;
+        }
+
+        /* Profile Content Styles from reg2.html */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+        }
+        .profile-info {
+            margin-left: 20px;
+            flex-grow: 1;
+        }
+        .change-password-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        .profile-title {
+            font-weight: bold;
+        }
+
+        /* Change Password Modal Styles - Enhanced */
+        #changePasswordModal .modal-header {
+            background: linear-gradient(45deg, var(--maroon), #a52a2a);
+            color: white;
+            border-bottom: none;
+            padding: 1.25rem 1.5rem;
+        }
+
+        #changePasswordModal .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+            opacity: 1;
+        }
+
+        #changePasswordModal .modal-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        #changePasswordModal .modal-title i {
+            margin-right: 10px;
+        }
+
+        #changePasswordModal .modal-body {
+            padding: 2rem 1.5rem;
+            background-color: #f8f9fa;
+        }
+
+        #changePasswordModal .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        #changePasswordModal .form-control {
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            padding: 0.625rem 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        #changePasswordModal .form-control:focus {
+            border-color: var(--maroon);
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+        }
+
+        #changePasswordModal .input-group-text {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-right: none;
+            color: #6c757d;
+        }
+
+        #changePasswordModal .form-control.password-input {
+            border-left: none;
+        }
+
+        #changePasswordModal .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6c757d;
+            z-index: 10;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        #changePasswordModal .password-toggle:hover {
+            color: var(--maroon);
+        }
+
+        #changePasswordModal .password-wrapper {
+            position: relative;
+        }
+
+        #changePasswordModal .password-wrapper {
+            position: relative;
+        }
+
+        #changePasswordModal .password-wrapper input[type="password"],
+        #changePasswordModal .password-wrapper input[type="text"] {
+            padding-right: 40px;
+        }
+
+        /* Hide browser default password reveal icons */
+        #changePasswordModal input[type="password"]::-ms-reveal,
+        #changePasswordModal input[type="password"]::-ms-clear,
+        #changePasswordModal input[type="text"]::-ms-reveal,
+        #changePasswordModal input[type="text"]::-ms-clear {
+            display: none;
+        }
+
+        #changePasswordModal input[type="password"]::-webkit-credentials-auto-fill-button,
+        #changePasswordModal input[type="password"]::-webkit-caps-lock-indicator,
+        #changePasswordModal input[type="text"]::-webkit-credentials-auto-fill-button,
+        #changePasswordModal input[type="text"]::-webkit-caps-lock-indicator {
+            display: none;
+        }
+
+        #changePasswordModal .modal-footer {
+            border-top: 1px solid #dee2e6;
+            padding: 1rem 1.5rem;
+            background-color: #fff;
+        }
+
+        #changePasswordModal .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        #changePasswordModal .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #changePasswordModal .btn-primary {
+            background-color: var(--maroon);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        #changePasswordModal .btn-primary:hover {
+            background-color: #a52a2a;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(128, 0, 0, 0.3);
+        }
+
+        #changePasswordModal .alert {
+            border-radius: 8px;
+            border: none;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        #changePasswordModal .alert-info {
+            background-color: #e7f3ff;
+            color: #004085;
+        }
+
+        #changePasswordModal .alert-info i {
+            margin-right: 8px;
+        }
+
+        /* Leaderboard Styles from Admin */
+        .gwa-display {
+            font-size: 1rem;
+            font-weight: normal;
+            color: var(--maroon);
+        }
+
+        .honor-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .university-scholar {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .college-scholar {
+            background-color: #C0C0C0;
+            color: #000;
+        }
+
+        .deans-lister {
+            background-color: var(--maroon);
+            color: #fff;
+        }
+
+        .filter-section {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bg-maroon {
+            background-color: var(--maroon);
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(128, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .card-header {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .change-password-btn {
+                position: static;
+                margin-top: 15px;
+                width: 100%;
+            }
+            .back-to-classes {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .subject-card {
+                margin-bottom: 15px;
+            }
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-info {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Mobile Header (visible only on mobile) -->
+            <div class="mobile-header">
+                <div class="header-content">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Enverga University Candelaria</h1>
+                </div>
+            </div>
+
+            <!-- Mobile Toggle Button (hidden, keeping for compatibility) -->
+            <button class="btn btn-dark toggle-btn d-md-none" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Updated Sidebar -->
+            <nav class="sidebar" id="sidebar">
+                <img src="photo/mseuflogo.png" alt="MSEUF Candelaria Logo" class="sidebar-logo">
+                <div class="university-name">MANUEL S. ENVERGA UNIVERSITY FOUNDATION CANDELARIA INC.</div>
+                <hr />
+                <a href="#" data-target="dashboard-content" class="nav-link active"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
+                <a href="#" data-target="grade-management-content" class="nav-link"><i class="fas fa-chart-line mr-2"></i> Grade Management</a>
+                <a href="#" data-target="leaderboards-content" class="nav-link"><i class="fas fa-trophy mr-2"></i> Leaderboards</a>
+                <a href="#" data-target="profile-content" class="nav-link"><i class="fas fa-user mr-2"></i> Profile</a>
+                <a href="#" onclick="logout();"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-10 main-content">
+                <!-- Dashboard Content (Active by default) -->
+                <div id="dashboard-content" class="content active">
+                     <h2 class="mb-4 dashboard-title"><i class="fas fa-tachometer-alt text-dark"></i> Teacher Dashboard</h2>
+                    
+                    <!-- Teacher Profile Card -->
+                    <div class="dashboard-card">
+                        <div class="d-flex align-items-center">
+                            <div class="me-4">
+                                <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Maria Clara</h5>
+                                <p class="mb-1">TeacherID: A22-0001</p>
+                                <p class="mb-1">Department: BS Computer Science</p>
+                                <p class="mb-0">School Year: 2024 - 2025</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card h-100 text-center stat-card">
+                                <div class="card-body">
+                                    <i class="fas fa-users fa-2x text-maroon mb-2"></i>
+                                    <h6 class="fw-bold text-maroon">Classes</h6>
+                                    <h2 class="text-dark">8</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card h-100 text-center stat-card">
+                                <div class="card-body">
+                                    <i class="fas fa-book fa-2x text-maroon mb-2"></i>
+                                    <h6 class="fw-bold text-maroon">Subjects</h6>
+                                    <h2 class="text-dark">10</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card h-100 text-center stat-card">
+                                <div class="card-body">
+                                    <i class="fas fa-exclamation-circle fa-2x text-maroon mb-2"></i>
+                                    <h6 class="fw-bold text-maroon">Pending Grades</h6>
+                                    <h2 class="text-dark">6</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="card h-100 text-center stat-card">
+                                <div class="card-body">
+                                    <i class="fas fa-bullhorn fa-2x text-maroon mb-2"></i>
+                                    <h6 class="fw-bold text-maroon">Announcements</h6>
+                                    <h2 class="text-dark">12</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grade Management Content (active) -->
+                <div id="grade-management-content" class="content">
+                    <!-- Class List View -->
+                    <div class="class-list">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="mb-0 text-white"><i class="fas fa-book mr-2"></i> My Classes</h2>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="schoolYearFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-filter"></i> Filter
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="schoolYearFilterDropdown">
+                                    <li><a class="dropdown-item active" href="#" onclick="filterBySchoolYear('all'); return false;">All School Years</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filterBySchoolYear('2024-2025'); return false;">2024 - 2025</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filterBySchoolYear('2023-2024'); return false;">2023 - 2024</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filterBySchoolYear('2022-2023'); return false;">2022 - 2023</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="filterBySchoolYear('2021-2022'); return false;">2021 - 2022</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="subject-card card h-100" data-school-year="2024-2025">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <span class="student-count-badge">
+                                                <i class="fas fa-users me-1"></i> 25 Students
+                                            </span>
+                                            <span class="grade-status status-completed">
+                                                <i class="fas fa-check-circle me-1"></i> Completed
+                                            </span>
+                                        </div>
+                                        <h4 class="card-title">Calculus 101</h4>
+                                        <p class="card-text text-muted">Section A - First Year</p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-calendar-week me-1"></i> Mon/Wed/Fri
+                                            </span>
+                                            <button class="btn btn-sm btn-outline-primary view-class-btn" data-target="calculus-101-section">
+                                                <i class="fas fa-arrow-right"></i> View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="subject-card card h-100" data-school-year="2024-2025">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <span class="student-count-badge">
+                                                <i class="fas fa-users me-1"></i> 30 Students
+                                            </span>
+                                            <span class="grade-status status-completed">
+                                                <i class="fas fa-check-circle me-1"></i> Completed
+                                            </span>
+                                        </div>
+                                        <h4 class="card-title">Algebra 201</h4>
+                                        <p class="card-text text-muted">Section B - Second Year</p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-calendar-week me-1"></i> Tue/Thu
+                                            </span>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-arrow-right"></i> View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="subject-card card h-100" data-school-year="2023-2024">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <span class="student-count-badge">
+                                                <i class="fas fa-users me-1"></i> 28 Students
+                                            </span>
+                                            <span class="grade-status status-pending">
+                                                <i class="fas fa-exclamation-triangle me-1"></i> Pending
+                                            </span>
+                                        </div>
+                                        <h4 class="card-title">Geometry 102</h4>
+                                        <p class="card-text text-muted">Section C - First Year</p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-calendar-week me-1"></i> Mon/Wed
+                                            </span>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-arrow-right"></i> View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="subject-card card h-100" data-school-year="2023-2024">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <span class="student-count-badge">
+                                                <i class="fas fa-users me-1"></i> 22 Students
+                                            </span>
+                                            <span class="grade-status status-pending">
+                                                <i class="fas fa-exclamation-triangle me-1"></i> Pending
+                                            </span>
+                                        </div>
+                                        <h4 class="card-title">Statistics 301</h4>
+                                        <p class="card-text text-muted">Section A - Third Year</p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-calendar-week me-1"></i> Tue/Thu
+                                            </span>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-arrow-right"></i> View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="subject-card card h-100" data-school-year="2022-2023">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <span class="student-count-badge">
+                                                <i class="fas fa-users me-1"></i> 15 Students
+                                            </span>
+                                            <span class="grade-status status-pending">
+                                                <i class="fas fa-exclamation-triangle me-1"></i> Pending
+                                            </span>
+                                        </div>
+                                        <h4 class="card-title">Trigonometry 202</h4>
+                                        <p class="card-text text-muted">Section D - Second Year</p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="text-muted small">
+                                                <i class="fas fa-calendar-week me-1"></i> Mon-Fri
+                                            </span>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-arrow-right"></i> View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculus 101 Grade Management Section -->
+                    <div id="calculus-101-section" class="grade-management-section">
+                        <div class="section-divider"></div>
+                        
+                        <div class="grade-management">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                        <button class="btn btn-outline-secondary back-to-classes mb-2 mb-md-0">
+                                            <i class="fas fa-arrow-left me-2"></i> Back to Classes
+                                        </button>
+                                        <div class="text-center text-md-start mb-2 mb-md-0">
+                                            <h2 class="mb-0 text-maroon"><i class="fas fa-book me-2"></i> Calculus 101 - Section A</h2>
+                                            <p class="text-muted mb-0 small"><i class="fas fa-users me-1"></i>25 Students Enrolled</p>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-secondary">
+                                                <i class="fas fa-download me-1"></i> Export
+                                            </button>
+                                            <button class="btn btn-maroon">
+                                                <i class="fas fa-save me-1"></i> Save All
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter-container mb-4">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Search Students</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="searchInput" placeholder="Search by name or ID...">
+                                            <button class="btn btn-outline-secondary" type="button">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Filter by Course Year</label>
+                                        <select class="form-control">
+                                            <option value="">All Years</option>
+                                            <option>First Year</option>
+                                            <option>Second Year</option>
+                                            <option>Third Year</option>
+                                            <option>Fourth Year</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="d-flex align-items-end">
+                                            <div class="flex-grow-1">
+                                                <label class="form-label">Filter by Section</label>
+                                                <select class="form-control">
+                                                    <option value="">All Sections</option>
+                                                    <option>Section A</option>
+                                                    <option>Section B</option>
+                                                    <option>Section C</option>
+                                                    <option>Section D</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-outline-secondary filter-reset-btn">
+                                                <i class="fas fa-sync-alt"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle mb-0" id="gradesTable">
+                                            <thead class="table-header">
+                                                <tr>
+                                                    <th style="width: 12%;">Student ID</th>
+                                                    <th style="width: 25%;">Student Name</th>
+                                                    <th class="text-center" style="width: 15%;">Midterm</th>
+                                                    <th class="text-center" style="width: 15%;">Final</th>
+                                                    <th class="text-center" style="width: 13%;">Average</th>
+                                                    <th class="text-center" style="width: 20%;">Remarks</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="grade-row">
+                                                    <td class="student-id-cell">S1001</td>
+                                                    <td class="student-name-cell">Alice Johnson</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="94">94</option>
+                                                            <option value="93">93</option>
+                                                            <option value="92">92</option>
+                                                            <option value="91">91</option>
+                                                            <option value="90">90</option>
+                                                            <option value="89">89</option>
+                                                            <option value="88" selected>88</option>
+                                                            <option value="87">87</option>
+                                                            <option value="86">86</option>
+                                                            <option value="85">85</option>
+                                                            <option value="84">84</option>
+                                                            <option value="83">83</option>
+                                                            <option value="82">82</option>
+                                                            <option value="81">81</option>
+                                                            <option value="80">80</option>
+                                                            <option value="79">79</option>
+                                                            <option value="78">78</option>
+                                                            <option value="77">77</option>
+                                                            <option value="76">76</option>
+                                                            <option value="75">75</option>
+                                                            <option value="74">74</option>
+                                                            <option value="73">73</option>
+                                                            <option value="72">72</option>
+                                                            <option value="71">71</option>
+                                                            <option value="70">70</option>
+                                                            <option value="69">69</option>
+                                                            <option value="68">68</option>
+                                                            <option value="67">67</option>
+                                                            <option value="66">66</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="94">94</option>
+                                                            <option value="93">93</option>
+                                                            <option value="92" selected>92</option>
+                                                            <option value="91">91</option>
+                                                            <option value="90">90</option>
+                                                            <option value="89">89</option>
+                                                            <option value="88">88</option>
+                                                            <option value="87">87</option>
+                                                            <option value="86">86</option>
+                                                            <option value="85">85</option>
+                                                            <option value="84">84</option>
+                                                            <option value="83">83</option>
+                                                            <option value="82">82</option>
+                                                            <option value="81">81</option>
+                                                            <option value="80">80</option>
+                                                            <option value="79">79</option>
+                                                            <option value="78">78</option>
+                                                            <option value="77">77</option>
+                                                            <option value="76">76</option>
+                                                            <option value="75">75</option>
+                                                            <option value="74">74</option>
+                                                            <option value="73">73</option>
+                                                            <option value="72">72</option>
+                                                            <option value="71">71</option>
+                                                            <option value="70">70</option>
+                                                            <option value="69">69</option>
+                                                            <option value="68">68</option>
+                                                            <option value="67">67</option>
+                                                            <option value="66">66</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center grade-average">90</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
+                                                            <option value="Passed" selected>Passed</option>
+                                                            <option value="Failed">Failed</option>
+                                                            <option value="Incomplete">Incomplete</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="grade-row">
+                                                    <td class="student-id-cell">S1002</td>
+                                                    <td class="student-name-cell">Bob Smith</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="82">82</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75" selected>75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="82" selected>82</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center grade-average">79</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
+                                                            <option value="Passed" selected>Passed</option>
+                                                            <option value="Failed">Failed</option>
+                                                            <option value="Incomplete">Incomplete</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="grade-row">
+                                                    <td class="student-id-cell">S1003</td>
+                                                    <td class="student-name-cell">Charlie Brown</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="91" selected>91</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="89" selected>89</option>
+                                                            <option value="85">85</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center grade-average">90</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
+                                                            <option value="Passed" selected>Passed</option>
+                                                            <option value="Failed">Failed</option>
+                                                            <option value="Incomplete">Incomplete</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="grade-row">
+                                                    <td class="student-id-cell">S1004</td>
+                                                    <td class="student-name-cell">Diana Martinez</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="95">95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="68" selected>68</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="95">95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="72" selected>72</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center grade-average">70</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select remarks-select status-failed mx-auto" onchange="updateRemarksStyle(this)">
+                                                            <option value="Passed">Passed</option>
+                                                            <option value="Failed" selected>Failed</option>
+                                                            <option value="Incomplete">Incomplete</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="grade-row">
+                                                    <td class="student-id-cell">S1005</td>
+                                                    <td class="student-name-cell">Edward Thompson</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97">97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95" selected>95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
+                                                            <option value="">--</option>
+                                                            <option value="100">100</option>
+                                                            <option value="99">99</option>
+                                                            <option value="98">98</option>
+                                                            <option value="97" selected>97</option>
+                                                            <option value="96">96</option>
+                                                            <option value="95">95</option>
+                                                            <option value="90">90</option>
+                                                            <option value="85">85</option>
+                                                            <option value="80">80</option>
+                                                            <option value="75">75</option>
+                                                            <option value="70">70</option>
+                                                            <option value="65">65</option>
+                                                            <option value="0">0</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center grade-average">96</td>
+                                                    <td class="text-center">
+                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
+                                                            <option value="Passed" selected>Passed</option>
+                                                            <option value="Failed">Failed</option>
+                                                            <option value="Incomplete">Incomplete</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="floating-actions mt-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-muted">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        <small>Make sure all grades are entered before submitting</small>
+                                    </div>
+                                    <button class="btn btn-maroon px-4 py-2" onclick="submitGrades()">
+                                        <i class="fas fa-paper-plane me-2"></i> Submit All Grades
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboards Content -->
+                <div id="leaderboards-content" class="content">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="mb-3"><i class="fas fa-trophy"></i> Academic Leaderboards</h2>
+
+                            <!-- Search Bar -->
+                            <div class="mb-3">
+                                <div class="input-group w-100">
+                                    <input type="text" class="form-control" id="leaderboardSearch" placeholder="Search students...">
+                                    <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Filter Section -->
+                            <div class="filter-section">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="academicYearFilter" class="form-label">Academic Year</label>
+                                        <select class="form-select" id="academicYearFilter" onchange="filterLeaderboard()">
+                                            <option value="2024-2025">2024 - 2025</option>
+                                            <option value="2023-2024">2023 - 2024</option>
+                                            <option value="2022-2023">2022 - 2023</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="honorFilter" class="form-label">Filter by Scholar Type</label>
+                                        <select class="form-select" id="honorFilter" onchange="filterLeaderboard()">
+                                            <option value="">All Scholars</option>
+                                            <option value="University Scholar">University Scholar (1.00 - 1.45)</option>
+                                            <option value="College Scholar">College Scholar (1.46 - 1.75)</option>
+                                            <option value="Dean's Lister">Dean's Lister (1.76 - 1.99)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="departmentFilterLeaderboard" class="form-label">Filter by Department</label>
+                                        <select class="form-select" id="departmentFilterLeaderboard" onchange="filterLeaderboard()">
+                                            <option value="">All Departments</option>
+                                            <option value="BSCS">BSCS</option>
+                                            <option value="BSIT">BSIT</option>
+                                            <option value="BSN">BSN</option>
+                                            <option value="BSED">BSED</option>
+                                            <option value="BSBA">BSBA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Leaderboard Table -->
+                            <div class="card">
+                                <div class="card-header bg-maroon text-white">
+                                    <h5 class="mb-0"><i class="fas fa-list-ol"></i> Complete Rankings</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" id="leaderboardTable">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th style="width: 80px;">Rank</th>
+                                                    <th>Student ID</th>
+                                                    <th>Name</th>
+                                                    <th>Department</th>
+                                                    <th>Year Level</th>
+                                                    <th>GWA</th>
+                                                    <th>Academic Scholar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-honor="University Scholar" data-dept="BSIT" data-year="2024-2025">
+                                                    <td>1</td>
+                                                    <td>A25-0001</td>
+                                                    <td>Juan Carlos Reyes</td>
+                                                    <td>BSIT</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.00</td>
+                                                    <td><span class="honor-badge university-scholar">University Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="University Scholar" data-dept="BSCS" data-year="2024-2025">
+                                                    <td>2</td>
+                                                    <td>A25-0015</td>
+                                                    <td>Maria Clara Santos</td>
+                                                    <td>BSCS</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.15</td>
+                                                    <td><span class="honor-badge university-scholar">University Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="University Scholar" data-dept="BSN" data-year="2024-2025">
+                                                    <td>3</td>
+                                                    <td>A25-0032</td>
+                                                    <td>Ana Marie Cruz</td>
+                                                    <td>BSN</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.18</td>
+                                                    <td><span class="honor-badge university-scholar">University Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="University Scholar" data-dept="BSED" data-year="2024-2025">
+                                                    <td>4</td>
+                                                    <td>A25-0045</td>
+                                                    <td>Robert Mendoza</td>
+                                                    <td>BSED</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.25</td>
+                                                    <td><span class="honor-badge university-scholar">University Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="University Scholar" data-dept="BSBA" data-year="2024-2025">
+                                                    <td>5</td>
+                                                    <td>A25-0058</td>
+                                                    <td>Sofia Rodriguez</td>
+                                                    <td>BSBA</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.32</td>
+                                                    <td><span class="honor-badge university-scholar">University Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="University Scholar" data-dept="BSCS" data-year="2024-2025">
+                                                    <td>6</td>
+                                                    <td>A25-0067</td>
+                                                    <td>Michael Tan</td>
+                                                    <td>BSCS</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.40</td>
+                                                    <td><span class="honor-badge university-scholar">University Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="College Scholar" data-dept="BSIT" data-year="2024-2025">
+                                                    <td>7</td>
+                                                    <td>A25-0078</td>
+                                                    <td>Catherine Lim</td>
+                                                    <td>BSIT</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.50</td>
+                                                    <td><span class="honor-badge college-scholar">College Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="College Scholar" data-dept="BSN" data-year="2024-2025">
+                                                    <td>8</td>
+                                                    <td>A25-0089</td>
+                                                    <td>Daniel Garcia</td>
+                                                    <td>BSN</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.60</td>
+                                                    <td><span class="honor-badge college-scholar">College Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="College Scholar" data-dept="BSED" data-year="2024-2025">
+                                                    <td>9</td>
+                                                    <td>A25-0095</td>
+                                                    <td>Isabel Fernandez</td>
+                                                    <td>BSED</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.70</td>
+                                                    <td><span class="honor-badge college-scholar">College Scholar</span></td>
+                                                </tr>
+                                                <tr data-honor="Dean's Lister" data-dept="BSBA" data-year="2024-2025">
+                                                    <td>10</td>
+                                                    <td>A25-0102</td>
+                                                    <td>Patrick Villa</td>
+                                                    <td>BSBA</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.80</td>
+                                                    <td><span class="honor-badge deans-lister">Dean's Lister</span></td>
+                                                </tr>
+                                                <tr data-honor="Dean's Lister" data-dept="BSCS" data-year="2024-2025">
+                                                    <td>11</td>
+                                                    <td>A25-0115</td>
+                                                    <td>Michelle Torres</td>
+                                                    <td>BSCS</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.85</td>
+                                                    <td><span class="honor-badge deans-lister">Dean's Lister</span></td>
+                                                </tr>
+                                                <tr data-honor="Dean's Lister" data-dept="BSIT" data-year="2024-2025">
+                                                    <td>12</td>
+                                                    <td>A25-0128</td>
+                                                    <td>Joshua Ramos</td>
+                                                    <td>BSIT</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.90</td>
+                                                    <td><span class="honor-badge deans-lister">Dean's Lister</span></td>
+                                                </tr>
+                                                <tr data-honor="Dean's Lister" data-dept="BSN" data-year="2024-2025">
+                                                    <td>13</td>
+                                                    <td>A25-0134</td>
+                                                    <td>Angela Morales</td>
+                                                    <td>BSN</td>
+                                                    <td>4th Year</td>
+                                                    <td>1.95</td>
+                                                    <td><span class="honor-badge deans-lister">Dean's Lister</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Content -->
+                <div id="profile-content" class="content">
+                    <h2 class="mb-4 profile-title"><i class="fas fa-user"></i> Profile</h2>
+                    
+                    <!-- Profile Section with Avatar on Left and Change Password Button -->
+                    <div class="profile-container">
+                        <img src="https://ui-avatars.com/api/?name=Maria+Clara&background=random&size=100" class="rounded-circle" alt="Profile" />
+                        <div class="profile-info">
+                            <h5 class="mb-1 fw-bold">Maria Clara</h5>
+                            <p class="mb-1">Teacher ID: A22-0001</p>
+                            <p class="mb-1">Department: BS Computer Science</p>
+                            <p class="mb-0">School Year: 2024 - 2025</p>
+                        </div>
+                        <button type="button" class="btn btn-danger change-password-btn" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            Change Password
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">
+                        <i class="fas fa-key"></i> Change Password
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <form id="changePasswordForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="teacherNumber" class="form-label">
+                                <i class="fas fa-id-card me-1"></i> Teacher ID
+                            </label>
+                            <input type="text" class="form-control" id="teacherNumber" name="teacherNumber" placeholder="Enter your Teacher ID" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="oldPassword" class="form-label">
+                                <i class="fas fa-lock me-1"></i> Current Password
+                            </label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter current password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('oldPassword')">
+                                    <i class="fas fa-eye" id="oldPassword-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">
+                                <i class="fas fa-lock me-1"></i> New Password
+                            </label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter new password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('newPassword')">
+                                    <i class="fas fa-eye" id="newPassword-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">
+                                <i class="fas fa-check-circle me-1"></i> Confirm New Password
+                            </label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re-enter new password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                    <i class="fas fa-eye" id="confirmPassword-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="updateBtn">
+                            <i class="fas fa-save me-1"></i> Update Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // Check login status
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        $(document).on('click', function(e) {
+            if ($(window).width() <= 768) {
+                if (!$(e.target).closest('#sidebar').length && 
+                    !$(e.target).closest('.toggle-btn').length &&
+                    !$(e.target).closest('.menu-toggle').length &&
+                    !$(e.target).closest('.mobile-header').length) {
+                    $('#sidebar').removeClass('active');
+                }
+            }
+        });
+
+        // Logout function
+        function logout() {
+            console.log('Logging out...');
+        }
+
+        // Navigation
+        $('.nav-link').on('click', function(e) {
+            e.preventDefault();
+            let target = $(this).data('target');
+            if (target) {
+                $('.content').removeClass('active');
+                $('#' + target).addClass('active');
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+
+        // View class button functionality
+        $('.view-class-btn').on('click', function() {
+            const target = $(this).data('target');
+            $('.class-list').hide();
+            $('#' + target).show().addClass('active');
+        });
+
+        // Back to classes button
+        $('.back-to-classes').on('click', function() {
+            $('.grade-management-section').hide().removeClass('active');
+            $('.class-list').show();
+        });
+
+        function updateGPA(select) {
+            const row = select.closest('tr');
+            const midtermSelect = row.querySelector('td:nth-child(3) select');
+            const finalSelect = row.querySelector('td:nth-child(4) select');
+
+            const midtermValue = midtermSelect.value.trim();
+            const finalValue = finalSelect.value.trim();
+
+            // Check for blank selection
+            if (midtermValue === "" || finalValue === "") {
+                // Don't calculate if either grade is not selected yet
+                return;
+            }
+
+            const midterm = parseFloat(midtermValue);
+            const final = parseFloat(finalValue);
+
+            const gpaCell = row.querySelector('td:nth-child(5)');
+            const remarkSelect = row.querySelector('td:nth-child(6) select');
+
+            const gpa = Math.round((midterm + final) / 2);
+            gpaCell.textContent = gpa;
+
+            // Auto-update remarks based on grade
+            if (gpa >= 75) {
+                remarkSelect.value = 'Passed';
+                remarkSelect.className = 'form-select remarks-select status-passed mx-auto';
+            } else {
+                remarkSelect.value = 'Failed';
+                remarkSelect.className = 'form-select remarks-select status-failed mx-auto';
+            }
+        }
+
+        // Function to update remarks select styling when manually changed
+        function updateRemarksStyle(select) {
+            const value = select.value;
+            select.className = 'form-select remarks-select mx-auto';
+            
+            if (value === 'Passed') {
+                select.classList.add('status-passed');
+            } else if (value === 'Failed') {
+                select.classList.add('status-failed');
+            } else if (value === 'Incomplete') {
+                select.classList.add('status-incomplete');
+            }
+        }
+
+        function submitGrades() {
+            const rows = document.querySelectorAll("#gradesTable tbody tr");
+            let hasEmpty = false;
+
+            rows.forEach(row => {
+                const midterm = row.querySelector('td:nth-child(3) select')?.value.trim();
+                const final = row.querySelector('td:nth-child(4) select')?.value.trim();
+
+                if (!midterm || midterm === "" || !final || final === "") {
+                    hasEmpty = true;
+                }
+            });
+
+            if (hasEmpty) {
+                alert("Please select grades for all students before submitting.");
+                return;
+            }
+
+            // Proceed with submission logic
+            alert("Grades submitted successfully!");
+            // e.g., send data to server here
+        }
+
+        // Leaderboard filtering functionality
+        function filterLeaderboard() {
+            const honorFilter = document.getElementById('honorFilter').value;
+            const deptFilter = document.getElementById('departmentFilterLeaderboard').value;
+            const yearFilter = document.getElementById('academicYearFilter').value;
+            const searchQuery = document.getElementById('leaderboardSearch').value.toLowerCase();
+            const tbody = document.getElementById('leaderboardTable').getElementsByTagName('tbody')[0];
+
+            Array.from(tbody.rows).forEach(row => {
+                const rowHonor = row.getAttribute('data-honor');
+                const rowDept = row.getAttribute('data-dept');
+                const rowYear = row.getAttribute('data-year');
+                const studentId = row.cells[1].textContent.toLowerCase();
+                const studentName = row.cells[2].textContent.toLowerCase();
+
+                const matchesHonor = !honorFilter || rowHonor === honorFilter;
+                const matchesDept = !deptFilter || rowDept === deptFilter;
+                const matchesYear = !yearFilter || rowYear === yearFilter;
+                const matchesSearch = !searchQuery || studentId.includes(searchQuery) || studentName.includes(searchQuery);
+
+                row.style.display = matchesHonor && matchesDept && matchesYear && matchesSearch ? '' : 'none';
+            });
+        }
+
+        // Add event listener for leaderboard search
+        document.getElementById('leaderboardSearch').addEventListener('input', filterLeaderboard);
+
+        // Password Toggle Function
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(inputId + '-icon');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Change Password Form Validation
+        document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const oldPassword = document.getElementById('oldPassword').value;
+            const teacherNumber = document.getElementById('teacherNumber').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation checks
+            if(teacherNumber !== "A22-0001") {
+                showAlert('error', 'Teacher ID does not match');
+                return;
+            } 
+            
+            if(oldPassword !== "password1") {
+                showAlert('error', 'Current password is incorrect');
+                return;
+            } 
+            
+            if (newPassword.length < 8) {
+                showAlert('error', 'New password must be at least 8 characters long');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showAlert('error', 'New password and confirmation do not match');
+                return;
+            }
+            
+            if (oldPassword === newPassword) {
+                showAlert('error', 'New password must be different from current password');
+                return;
+            }
+            
+            // Success
+            showAlert('success', 'Password changed successfully!');
+            
+            // Clear form and close modal
+            setTimeout(() => {
+                document.getElementById('changePasswordForm').reset();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('changePasswordModal'));
+                modal.hide();
+            }, 1500);
+        });
+
+        // Alert function
+        function showAlert(type, message) {
+            // Remove existing alerts
+            const existingAlert = document.querySelector('#changePasswordModal .alert-dismissible');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+            
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            
+            const alertHtml = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="fas ${icon} me-2"></i>${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+            
+            const modalBody = document.querySelector('#changePasswordModal .modal-body');
+            modalBody.insertAdjacentHTML('afterbegin', alertHtml);
+            
+            // Auto-dismiss after 3 seconds for error messages
+            if (type === 'error') {
+                setTimeout(() => {
+                    const alert = document.querySelector('#changePasswordModal .alert-dismissible');
+                    if (alert) {
+                        alert.remove();
+                    }
+                }, 3000);
+            }
+        }
+
+        // School Year Filter Function
+        function filterBySchoolYear(schoolYear) {
+            // Update active state in dropdown
+            const dropdownItems = document.querySelectorAll('#schoolYearFilterDropdown + .dropdown-menu .dropdown-item');
+            dropdownItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Set active on clicked item
+            event.target.classList.add('active');
+            
+            // Get all subject cards
+            const subjectCards = document.querySelectorAll('.subject-card');
+            
+            // Counter for visible cards
+            let visibleCount = 0;
+            
+            // Filter logic
+            subjectCards.forEach(card => {
+                const cardSchoolYear = card.dataset.schoolYear;
+                
+                if (schoolYear === 'all') {
+                    // Show all cards
+                    card.parentElement.style.display = '';
+                    visibleCount++;
+                } else if (cardSchoolYear === schoolYear) {
+                    // Show cards matching the selected school year
+                    card.parentElement.style.display = '';
+                    visibleCount++;
+                } else {
+                    // Hide cards that don't match
+                    card.parentElement.style.display = 'none';
+                }
+            });
+            
+            // Optional: Show a message if no classes found
+            if (visibleCount === 0) {
+                console.log('No classes found for school year:', schoolYear);
+                // You can add a visual message here if desired
+            } else {
+                console.log(`Showing ${visibleCount} class(es) for school year: ${schoolYear}`);
+            }
+        }
+
+        // Make function globally available
+        window.filterBySchoolYear = filterBySchoolYear;
+        window.togglePassword = togglePassword;
+    </script>
+</body>
+</html>

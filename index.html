@@ -288,159 +288,252 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.1);
             border-color: #800000;
         }
-        .grade-input {
-            width: 70px;
-            text-align: center;
-            font-weight: 500;
-            border: 2px solid #dee2e6;
-            transition: all 0.2s;
-            border-radius: 6px;
-            padding: 0.4rem 0.5rem;
-        }
-        .grade-input:focus {
-            border-color: #800000;
-            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
-            outline: none;
-        }
-        .grade-select {
-            width: 80px;
-            text-align: center;
-            font-weight: 600;
-            border: 2px solid #dee2e6;
-            transition: all 0.2s;
-            border-radius: 6px;
-            padding: 0.4rem 0.3rem;
-            background-color: white;
-            cursor: pointer;
-        }
-        .grade-select:focus {
-            border-color: #800000;
-            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
-            outline: none;
-        }
-        .grade-status {
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            display: inline-block;
-        }
-        .status-completed {
-            background-color: #d1e7dd;
-            color: #0f5132;
-        }
-        .status-pending {
-            background-color: #fff3cd;
-            color: #997404;
-        }
-        .status-passed {
-            background-color: #d1e7dd;
-            color: #0f5132;
-        }
-        .status-failed {
-            background-color: #f8d7da;
-            color: #842029;
-        }
-        .grade-row {
-            transition: all 0.2s;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .grade-row:hover {
-            background-color: rgba(128, 0, 0, 0.04);
-            transform: scale(1.005);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .grade-average {
-            font-weight: 700;
-            color: #800000;
-            font-size: 1.1rem;
-        }
-        .table-header th {
-            background-color: #800000 !important;
-            color: white !important;
-            font-weight: 600;
-            border-bottom: none;
-            padding: 1rem 0.75rem;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-        }
-        .floating-actions {
-            position: sticky;
-            bottom: 20px;
+
+        /* NEW GRADE MANAGEMENT STYLES - ENHANCED WITH MAROON */
+        .grade-header-section {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-            z-index: 10;
-            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
-        .student-id-cell {
-            font-weight: 600;
-            color: #495057;
-        }
-        .student-name-cell {
+        
+        .grade-header-section h5 {
+            font-size: 1.1rem;
             font-weight: 500;
-            color: #212529;
+            color: #333;
+            margin: 0;
         }
-        .remarks-select {
-            width: 140px;
-            text-align: center;
-            font-weight: 600;
-            border: 2px solid #dee2e6;
-            transition: all 0.2s;
+        
+        .grade-header-section p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 3px 0 0 0;
+        }
+        
+        .compact-filters {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        
+        .compact-filters .form-label {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        
+        .compact-filters .form-control,
+        .compact-filters .form-select {
+            font-size: 0.85rem;
+            padding: 6px 10px;
             border-radius: 6px;
-            padding: 0.4rem 0.5rem;
-            background-color: white;
-            cursor: pointer;
+            border: 1px solid #ddd;
         }
-        .remarks-select:focus {
+        
+        .compact-filters .btn {
+            font-size: 0.85rem;
+            padding: 6px 12px;
+        }
+        
+        /* Mobile and Desktop Table View */
+        .grade-table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .grade-table-container table {
+            width: 100%;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        
+        .grade-table-container thead th {
+            background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
+            color: white;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 6px;
+            border: none;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .grade-table-container tbody td {
+            padding: 10px 6px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: center;
+        }
+        
+        .grade-table-container tbody tr {
+            transition: all 0.2s;
+        }
+        
+        .grade-table-container tbody tr:hover {
+            background-color: #fff5f5;
+        }
+        
+        .grade-table-container select {
+            font-size: 0.8rem;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-weight: 500;
+            width: 100%;
+            max-width: 70px;
+            background-color: #f8f9fa;
+        }
+        
+        .grade-table-container select:focus {
             border-color: #800000;
-            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
             outline: none;
+            box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.1);
+            background-color: white;
         }
-        .remarks-select.status-passed {
-            color: #0f5132;
-            border-color: #d1e7dd;
+        
+        .grade-table-container .gpa-cell {
+            font-size: 0.9rem;
+            color: #800000;
+            font-weight: 600;
+        }
+        
+        .grade-table-container .student-id-cell {
+            color: #666;
+            font-size: 0.75rem;
+        }
+        
+        .grade-table-container .student-name-cell {
+            color: #333;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: left;
+            white-space: nowrap;
+        }
+        
+        .grade-table-container select.status-passed {
             background-color: #d1e7dd;
+            color: #0f5132;
+            border-color: #a3cfbb;
         }
-        .remarks-select.status-failed {
-            color: #842029;
-            border-color: #f8d7da;
+        
+        .grade-table-container select.status-failed {
             background-color: #f8d7da;
+            color: #842029;
+            border-color: #f1aeb5;
         }
-        .remarks-select.status-incomplete {
-            color: #997404;
-            border-color: #fff3cd;
+        
+        .grade-table-container select.status-incomplete {
             background-color: #fff3cd;
+            color: #997404;
+            border-color: #ffe69c;
         }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 991px) {
+            .grade-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .grade-table-container table {
+                min-width: 100%;
+            }
+            
+            .grade-table-container thead th {
+                font-size: 0.7rem;
+                padding: 8px 4px;
+            }
+            
+            .grade-table-container tbody td {
+                padding: 8px 4px;
+                font-size: 0.75rem;
+            }
+            
+            .grade-table-container select {
+                font-size: 0.75rem;
+                padding: 3px 4px;
+                max-width: 60px;
+            }
+            
+            .grade-table-container .student-name-cell {
+                font-size: 0.75rem;
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        
+        /* Desktop adjustments */
+        @media (min-width: 992px) {
+            .grade-table-container table {
+                font-size: 0.9rem;
+            }
+            
+            .grade-table-container thead th {
+                font-size: 0.85rem;
+                padding: 12px 10px;
+            }
+            
+            .grade-table-container tbody td {
+                padding: 12px 10px;
+            }
+            
+            .grade-table-container select {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+                min-width: 80px;
+            }
+            
+            .grade-table-container .student-name-cell {
+                font-size: 0.9rem;
+            }
+        }
+        
+        .action-buttons-section {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .action-buttons-section .info-text {
+            font-size: 0.8rem;
+            color: #666;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .action-buttons-section .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-buttons-section .btn {
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
         .section-divider {
             margin: 40px 0;
             border-top: 1px solid #dee2e6;
         }
-        .filter-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border: 1px solid #e8e8e8;
-        }
-        .filter-reset-btn {
-            margin-left: 10px;
-            align-self: flex-end;
-            height: 38px;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        .student-count-badge {
-            background-color: #800000;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
+        
         .btn-outline-primary {
             color: #800000;
             border-color: #800000;
@@ -454,6 +547,7 @@
             background-color: #800000;
             border-color: #800000;
         }
+        
         /* New styles for view functionality */
         .grade-management-section {
             display: none;
@@ -461,10 +555,7 @@
         .grade-management-section.active {
             display: block;
         }
-        .back-to-classes {
-            margin-right: 15px;
-        }
-
+        
         /* Content adjustments */
         .class-list {
             padding: 20px;
@@ -787,15 +878,36 @@
             border-bottom: none;
         }
 
+        .student-count-badge {
+            background-color: #800000;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .grade-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .status-completed {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #997404;
+        }
+
         @media (max-width: 768px) {
             .change-password-btn {
                 position: static;
                 margin-top: 15px;
                 width: 100%;
-            }
-            .back-to-classes {
-                margin-right: 0;
-                margin-bottom: 10px;
             }
             .subject-card {
                 margin-bottom: 15px;
@@ -807,6 +919,29 @@
             .profile-info {
                 margin-left: 0;
                 margin-top: 15px;
+            }
+            
+            .grade-header-section {
+                text-align: center;
+            }
+            
+            .action-buttons-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .action-buttons-section .info-text {
+                text-align: center;
+                min-width: 100%;
+            }
+            
+            .action-buttons-section .btn-group {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .action-buttons-section .btn {
+                width: 100%;
             }
         }
     </style>
@@ -1051,389 +1186,299 @@
                     <div id="calculus-101-section" class="grade-management-section">
                         <div class="section-divider"></div>
                         
-                        <div class="grade-management">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                        <button class="btn btn-outline-secondary back-to-classes mb-2 mb-md-0">
-                                            <i class="fas fa-arrow-left me-2"></i> Back to Classes
-                                        </button>
-                                        <div class="text-center text-md-start mb-2 mb-md-0">
-                                            <h2 class="mb-0 text-maroon"><i class="fas fa-book me-2"></i> Calculus 101 - Section A</h2>
-                                            <p class="text-muted mb-0 small"><i class="fas fa-users me-1"></i>25 Students Enrolled</p>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-outline-secondary">
-                                                <i class="fas fa-download me-1"></i> Export
-                                            </button>
-                                            <button class="btn btn-maroon">
-                                                <i class="fas fa-save me-1"></i> Save All
-                                            </button>
-                                        </div>
-                                    </div>
+                        <!-- Header Section -->
+                        <div class="grade-header-section">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <button class="btn btn-outline-secondary btn-sm back-to-classes">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
+                                <div class="text-center flex-grow-1">
+                                    <h5><i class="fas fa-book me-2"></i>Calculus 101 - Section A</h5>
+                                    <p><i class="fas fa-users me-1"></i>25 Students Enrolled</p>
                                 </div>
-                            </div>
-
-                            <div class="filter-container mb-4">
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label">Search Students</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="searchInput" placeholder="Search by name or ID...">
-                                            <button class="btn btn-outline-secondary" type="button">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label">Filter by Course Year</label>
-                                        <select class="form-control">
-                                            <option value="">All Years</option>
-                                            <option>First Year</option>
-                                            <option>Second Year</option>
-                                            <option>Third Year</option>
-                                            <option>Fourth Year</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="d-flex align-items-end">
-                                            <div class="flex-grow-1">
-                                                <label class="form-label">Filter by Section</label>
-                                                <select class="form-control">
-                                                    <option value="">All Sections</option>
-                                                    <option>Section A</option>
-                                                    <option>Section B</option>
-                                                    <option>Section C</option>
-                                                    <option>Section D</option>
-                                                </select>
-                                            </div>
-                                            <button class="btn btn-outline-secondary filter-reset-btn">
-                                                <i class="fas fa-sync-alt"></i> Reset
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover align-middle mb-0" id="gradesTable">
-                                            <thead class="table-header">
-                                                <tr>
-                                                    <th style="width: 12%;">Student ID</th>
-                                                    <th style="width: 25%;">Student Name</th>
-                                                    <th class="text-center" style="width: 15%;">Midterm</th>
-                                                    <th class="text-center" style="width: 15%;">Final</th>
-                                                    <th class="text-center" style="width: 13%;">Average</th>
-                                                    <th class="text-center" style="width: 20%;">Remarks</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="grade-row">
-                                                    <td class="student-id-cell">S1001</td>
-                                                    <td class="student-name-cell">Alice Johnson</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="94">94</option>
-                                                            <option value="93">93</option>
-                                                            <option value="92">92</option>
-                                                            <option value="91">91</option>
-                                                            <option value="90">90</option>
-                                                            <option value="89">89</option>
-                                                            <option value="88" selected>88</option>
-                                                            <option value="87">87</option>
-                                                            <option value="86">86</option>
-                                                            <option value="85">85</option>
-                                                            <option value="84">84</option>
-                                                            <option value="83">83</option>
-                                                            <option value="82">82</option>
-                                                            <option value="81">81</option>
-                                                            <option value="80">80</option>
-                                                            <option value="79">79</option>
-                                                            <option value="78">78</option>
-                                                            <option value="77">77</option>
-                                                            <option value="76">76</option>
-                                                            <option value="75">75</option>
-                                                            <option value="74">74</option>
-                                                            <option value="73">73</option>
-                                                            <option value="72">72</option>
-                                                            <option value="71">71</option>
-                                                            <option value="70">70</option>
-                                                            <option value="69">69</option>
-                                                            <option value="68">68</option>
-                                                            <option value="67">67</option>
-                                                            <option value="66">66</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="94">94</option>
-                                                            <option value="93">93</option>
-                                                            <option value="92" selected>92</option>
-                                                            <option value="91">91</option>
-                                                            <option value="90">90</option>
-                                                            <option value="89">89</option>
-                                                            <option value="88">88</option>
-                                                            <option value="87">87</option>
-                                                            <option value="86">86</option>
-                                                            <option value="85">85</option>
-                                                            <option value="84">84</option>
-                                                            <option value="83">83</option>
-                                                            <option value="82">82</option>
-                                                            <option value="81">81</option>
-                                                            <option value="80">80</option>
-                                                            <option value="79">79</option>
-                                                            <option value="78">78</option>
-                                                            <option value="77">77</option>
-                                                            <option value="76">76</option>
-                                                            <option value="75">75</option>
-                                                            <option value="74">74</option>
-                                                            <option value="73">73</option>
-                                                            <option value="72">72</option>
-                                                            <option value="71">71</option>
-                                                            <option value="70">70</option>
-                                                            <option value="69">69</option>
-                                                            <option value="68">68</option>
-                                                            <option value="67">67</option>
-                                                            <option value="66">66</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center grade-average">90</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
-                                                            <option value="Passed" selected>Passed</option>
-                                                            <option value="Failed">Failed</option>
-                                                            <option value="Incomplete">Incomplete</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr class="grade-row">
-                                                    <td class="student-id-cell">S1002</td>
-                                                    <td class="student-name-cell">Bob Smith</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="82">82</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75" selected>75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="82" selected>82</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center grade-average">79</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
-                                                            <option value="Passed" selected>Passed</option>
-                                                            <option value="Failed">Failed</option>
-                                                            <option value="Incomplete">Incomplete</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr class="grade-row">
-                                                    <td class="student-id-cell">S1003</td>
-                                                    <td class="student-name-cell">Charlie Brown</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="91" selected>91</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="89" selected>89</option>
-                                                            <option value="85">85</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center grade-average">90</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
-                                                            <option value="Passed" selected>Passed</option>
-                                                            <option value="Failed">Failed</option>
-                                                            <option value="Incomplete">Incomplete</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr class="grade-row">
-                                                    <td class="student-id-cell">S1004</td>
-                                                    <td class="student-name-cell">Diana Martinez</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="95">95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="68" selected>68</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="95">95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="72" selected>72</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center grade-average">70</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select remarks-select status-failed mx-auto" onchange="updateRemarksStyle(this)">
-                                                            <option value="Passed">Passed</option>
-                                                            <option value="Failed" selected>Failed</option>
-                                                            <option value="Incomplete">Incomplete</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr class="grade-row">
-                                                    <td class="student-id-cell">S1005</td>
-                                                    <td class="student-name-cell">Edward Thompson</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select midterm-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97">97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95" selected>95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <select class="form-select grade-select final-grade mx-auto" onchange="updateGPA(this)">
-                                                            <option value="">--</option>
-                                                            <option value="100">100</option>
-                                                            <option value="99">99</option>
-                                                            <option value="98">98</option>
-                                                            <option value="97" selected>97</option>
-                                                            <option value="96">96</option>
-                                                            <option value="95">95</option>
-                                                            <option value="90">90</option>
-                                                            <option value="85">85</option>
-                                                            <option value="80">80</option>
-                                                            <option value="75">75</option>
-                                                            <option value="70">70</option>
-                                                            <option value="65">65</option>
-                                                            <option value="0">0</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="text-center grade-average">96</td>
-                                                    <td class="text-center">
-                                                        <select class="form-select remarks-select status-passed mx-auto" onchange="updateRemarksStyle(this)">
-                                                            <option value="Passed" selected>Passed</option>
-                                                            <option value="Failed">Failed</option>
-                                                            <option value="Incomplete">Incomplete</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="floating-actions mt-4">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        <small>Make sure all grades are entered before submitting</small>
-                                    </div>
-                                    <button class="btn btn-maroon px-4 py-2" onclick="submitGrades()">
-                                        <i class="fas fa-paper-plane me-2"></i> Submit All Grades
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-secondary btn-sm">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn btn-maroon btn-sm">
+                                        <i class="fas fa-save"></i> Save
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Compact Filters -->
+                        <div class="compact-filters">
+                            <div class="row g-2">
+                                <div class="col-md-5 col-12">
+                                    <label class="form-label">Search</label>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Name or ID...">
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <label class="form-label">Year</label>
+                                    <select class="form-select">
+                                        <option value="">All</option>
+                                        <option>1st</option>
+                                        <option>2nd</option>
+                                        <option>3rd</option>
+                                        <option>4th</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <label class="form-label">Section</label>
+                                    <select class="form-select">
+                                        <option value="">All</option>
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                        <option>D</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 col-12">
+                                    <label class="form-label d-none d-md-block">&nbsp;</label>
+                                    <button class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grade Table (Mobile & Desktop) -->
+                        <div class="grade-table-container">
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Midterm</th>
+                                            <th>Final</th>
+                                            <th>Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="student-id-cell">S1001</td>
+                                            <td class="student-name-cell">Alice Johnson</td>
+                                            <td>
+                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75" selected>1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50" selected>1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
+                                                    <option value="Passed" selected>Passed</option>
+                                                    <option value="Failed">Failed</option>
+                                                    <option value="Incomplete">Incomplete</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="student-id-cell">S1002</td>
+                                            <td class="student-name-cell">Bob Smith</td>
+                                            <td>
+                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00" selected>3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25" selected>2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
+                                                    <option value="Passed" selected>Passed</option>
+                                                    <option value="Failed">Failed</option>
+                                                    <option value="Incomplete">Incomplete</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="student-id-cell">S1003</td>
+                                            <td class="student-name-cell">Charlie Brown</td>
+                                            <td>
+                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50" selected>1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50" selected>1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
+                                                    <option value="Passed" selected>Passed</option>
+                                                    <option value="Failed">Failed</option>
+                                                    <option value="Incomplete">Incomplete</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="student-id-cell">S1004</td>
+                                            <td class="student-name-cell">Diana Martinez</td>
+                                            <td>
+                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00" selected>5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00" selected>5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="status-failed" onchange="updateRemarksStyle(this)">
+                                                    <option value="Passed">Passed</option>
+                                                    <option value="Failed" selected>Failed</option>
+                                                    <option value="Incomplete">Incomplete</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="student-id-cell">S1005</td>
+                                            <td class="student-name-cell">Edward Thompson</td>
+                                            <td>
+                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00">1.00</option>
+                                                    <option value="1.25" selected>1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                    <option value="">--</option>
+                                                    <option value="1.00" selected>1.00</option>
+                                                    <option value="1.25">1.25</option>
+                                                    <option value="1.50">1.50</option>
+                                                    <option value="1.75">1.75</option>
+                                                    <option value="2.00">2.00</option>
+                                                    <option value="2.25">2.25</option>
+                                                    <option value="2.50">2.50</option>
+                                                    <option value="2.75">2.75</option>
+                                                    <option value="3.00">3.00</option>
+                                                    <option value="5.00">5.00</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
+                                                    <option value="Passed" selected>Passed</option>
+                                                    <option value="Failed">Failed</option>
+                                                    <option value="Incomplete">Incomplete</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons-section">
+                            <div class="info-text">
+                                <i class="fas fa-info-circle"></i> Ensure all grades are entered before submitting
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                                <button class="btn btn-maroon" onclick="submitGrades()">
+                                    <i class="fas fa-paper-plane"></i> Submit
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1728,7 +1773,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script>
-        // Check login status
         // Mobile sidebar toggle
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('active');
@@ -1777,59 +1821,53 @@
         });
 
         function updateGPA(select) {
-            const row = select.closest('tr');
-            const midtermSelect = row.querySelector('td:nth-child(3) select');
-            const finalSelect = row.querySelector('td:nth-child(4) select');
-
-            const midtermValue = midtermSelect.value.trim();
-            const finalValue = finalSelect.value.trim();
+            // Find the parent row
+            const row = $(select).closest('tr');
+            
+            // Get the final grade select
+            const finalSelect = row.find('.final-grade');
+            const remarkSelect = row.find('td:last-child select');
+            
+            const finalValue = finalSelect.val().trim();
 
             // Check for blank selection
-            if (midtermValue === "" || finalValue === "") {
-                // Don't calculate if either grade is not selected yet
+            if (finalValue === "") {
                 return;
             }
 
-            const midterm = parseFloat(midtermValue);
-            const final = parseFloat(finalValue);
+            const finalGrade = parseFloat(finalValue);
 
-            const gpaCell = row.querySelector('td:nth-child(5)');
-            const remarkSelect = row.querySelector('td:nth-child(6) select');
-
-            const gpa = Math.round((midterm + final) / 2);
-            gpaCell.textContent = gpa;
-
-            // Auto-update remarks based on grade
-            if (gpa >= 75) {
-                remarkSelect.value = 'Passed';
-                remarkSelect.className = 'form-select remarks-select status-passed mx-auto';
+            // Auto-update remarks based on final grade
+            if (finalGrade <= 3.00) {
+                remarkSelect.val('Passed');
+                remarkSelect.removeClass('status-failed status-incomplete').addClass('status-passed');
             } else {
-                remarkSelect.value = 'Failed';
-                remarkSelect.className = 'form-select remarks-select status-failed mx-auto';
+                remarkSelect.val('Failed');
+                remarkSelect.removeClass('status-passed status-incomplete').addClass('status-failed');
             }
         }
 
         // Function to update remarks select styling when manually changed
         function updateRemarksStyle(select) {
-            const value = select.value;
-            select.className = 'form-select remarks-select mx-auto';
+            const value = $(select).val();
+            $(select).removeClass('status-passed status-failed status-incomplete');
             
             if (value === 'Passed') {
-                select.classList.add('status-passed');
+                $(select).addClass('status-passed');
             } else if (value === 'Failed') {
-                select.classList.add('status-failed');
+                $(select).addClass('status-failed');
             } else if (value === 'Incomplete') {
-                select.classList.add('status-incomplete');
+                $(select).addClass('status-incomplete');
             }
         }
 
         function submitGrades() {
-            const rows = document.querySelectorAll("#gradesTable tbody tr");
             let hasEmpty = false;
-
-            rows.forEach(row => {
-                const midterm = row.querySelector('td:nth-child(3) select')?.value.trim();
-                const final = row.querySelector('td:nth-child(4) select')?.value.trim();
+            
+            // Check all table rows
+            $('.grade-table-container tbody tr').each(function() {
+                const midterm = $(this).find('.midterm-grade').val()?.trim();
+                const final = $(this).find('.final-grade').val()?.trim();
 
                 if (!midterm || midterm === "" || !final || final === "") {
                     hasEmpty = true;
@@ -1841,9 +1879,7 @@
                 return;
             }
 
-            // Proceed with submission logic
             alert("Grades submitted successfully!");
-            // e.g., send data to server here
         }
 
         // Leaderboard filtering functionality
@@ -1989,23 +2025,18 @@
                 const cardSchoolYear = card.dataset.schoolYear;
                 
                 if (schoolYear === 'all') {
-                    // Show all cards
                     card.parentElement.style.display = '';
                     visibleCount++;
                 } else if (cardSchoolYear === schoolYear) {
-                    // Show cards matching the selected school year
                     card.parentElement.style.display = '';
                     visibleCount++;
                 } else {
-                    // Hide cards that don't match
                     card.parentElement.style.display = 'none';
                 }
             });
             
-            // Optional: Show a message if no classes found
             if (visibleCount === 0) {
                 console.log('No classes found for school year:', schoolYear);
-                // You can add a visual message here if desired
             } else {
                 console.log(`Showing ${visibleCount} class(es) for school year: ${schoolYear}`);
             }

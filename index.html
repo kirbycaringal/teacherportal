@@ -20,9 +20,93 @@
         }
         body {
             overflow-x: hidden;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f5f5;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
         }
+        
+        /* Typography System */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        h4 {
+            font-size: 1.25rem;
+        }
+        
+        h5 {
+            font-size: 1.1rem;
+        }
+        
+        h6 {
+            font-size: 1rem;
+        }
+        
+        /* Section Title Standardization */
+        .section-title {
+            color: var(--maroon);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title i {
+            margin-right: 0.5rem;
+            color: #333;
+        }
+        
+        /* Card Title Standardization */
+        .card-title {
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            color: #333 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Subsection Headers */
+        .subsection-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 1rem;
+        }
+        
+        /* Body text standardization */
+        p, .card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        /* Small text */
+        small, .small-text {
+            font-size: 0.875rem;
+        }
+        
+        /* Label standardization */
+        .form-label, label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
         
         /* Updated Sidebar Styles */
         .sidebar {
@@ -172,21 +256,30 @@
         }
 
         .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: #800000;
             margin: 10px 0;
+            line-height: 1.2;
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            font-weight: 500;
             color: #666;
         }
         
         /* Dashboard styles */
         .dashboard-title {
             color: var(--maroon);
-            font-weight: bold;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dashboard-title i {
+            color: #333;
+            margin-right: 0.5rem;
         }
 
         .dashboard-card {
@@ -314,29 +407,29 @@
         .compact-filters {
             background: white;
             border-radius: 8px;
-            padding: 12px;
+            padding: 15px;
             margin-bottom: 15px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
         
         .compact-filters .form-label {
-            font-size: 0.8rem;
-            color: #555;
-            margin-bottom: 4px;
+            font-size: 0.9rem;
+            color: #495057;
+            margin-bottom: 0.5rem;
             font-weight: 500;
         }
         
         .compact-filters .form-control,
         .compact-filters .form-select {
-            font-size: 0.85rem;
-            padding: 6px 10px;
+            font-size: 0.95rem;
+            padding: 8px 12px;
             border-radius: 6px;
             border: 1px solid #ddd;
         }
         
         .compact-filters .btn {
-            font-size: 0.85rem;
-            padding: 6px 12px;
+            font-size: 0.95rem;
+            padding: 8px 12px;
         }
         
         /* Mobile and Desktop Table View */
@@ -350,27 +443,28 @@
         .grade-table-container table {
             width: 100%;
             margin: 0;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
         }
         
         .grade-table-container thead th {
             background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
             color: white;
-            font-weight: 500;
-            font-size: 0.75rem;
+            font-weight: 600;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 10px 6px;
+            padding: 12px 8px;
             border: none;
             text-align: center;
             white-space: nowrap;
         }
         
         .grade-table-container tbody td {
-            padding: 10px 6px;
+            padding: 12px 8px;
             vertical-align: middle;
             border-bottom: 1px solid #f0f0f0;
             text-align: center;
+            font-size: 0.95rem;
         }
         
         .grade-table-container tbody tr {
@@ -382,14 +476,14 @@
         }
         
         .grade-table-container select {
-            font-size: 0.8rem;
-            padding: 4px 6px;
+            font-size: 0.9rem;
+            padding: 6px 8px;
             border-radius: 4px;
             border: 1px solid #ddd;
             text-align: center;
-            font-weight: 500;
+            font-weight: 400;
             width: 100%;
-            max-width: 70px;
+            max-width: 80px;
             background-color: #f8f9fa;
         }
         
@@ -401,20 +495,21 @@
         }
         
         .grade-table-container .gpa-cell {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #800000;
             font-weight: 600;
         }
         
         .grade-table-container .student-id-cell {
             color: #666;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 400;
         }
         
         .grade-table-container .student-name-cell {
             color: #333;
-            font-weight: 500;
-            font-size: 0.8rem;
+            font-weight: 400;
+            font-size: 0.95rem;
             text-align: left;
             white-space: nowrap;
         }
@@ -437,6 +532,120 @@
             border-color: #ffe69c;
         }
         
+        /* Midterm input field styles */
+        .grade-table-container .midterm-grade-input {
+            font-size: 0.9rem;
+            padding: 6px 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-weight: 400;
+            width: 100%;
+            max-width: 80px;
+            background-color: white;
+        }
+        
+        .grade-table-container .midterm-grade-input:focus {
+            border-color: #800000;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        /* Remarks cell styles - simple and elegant */
+        .grade-table-container .remarks-cell {
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 12px 8px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .grade-table-container .remarks-cell.status-passed {
+            color: #0f5132;
+        }
+        
+        .grade-table-container .remarks-cell.status-failed {
+            color: #842029;
+        }
+        
+        .grade-table-container .remarks-cell.status-incomplete {
+            color: #856404;
+        }
+        
+        .grade-table-container .remarks-cell.status-drop {
+            color: #6c757d;
+        }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 991px) {
+            .grade-table-container .midterm-grade-input {
+                font-size: 0.75rem;
+                padding: 3px 4px;
+                max-width: 60px;
+            }
+            
+            .grade-table-container .remarks-cell {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Desktop adjustments */
+        @media (min-width: 992px) {
+            .grade-table-container .midterm-grade-input {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+                min-width: 80px;
+            }
+            
+            .grade-table-container .remarks-cell {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Floating action buttons */
+        .action-buttons-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-buttons-floating.show {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .action-buttons-floating .btn {
+            font-size: 0.95rem;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            min-width: 150px;
+        }
+        
+        @media (max-width: 768px) {
+            .action-buttons-floating {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                padding: 12px;
+                width: calc(100% - 20px);
+            }
+            
+            .action-buttons-floating .btn {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+        
         /* Mobile specific adjustments */
         @media (max-width: 991px) {
             .grade-table-container {
@@ -446,55 +655,87 @@
             
             .grade-table-container table {
                 min-width: 100%;
+                font-size: 0.85rem;
             }
             
             .grade-table-container thead th {
-                font-size: 0.7rem;
-                padding: 8px 4px;
+                font-size: 0.8rem;
+                padding: 10px 6px;
             }
             
             .grade-table-container tbody td {
-                padding: 8px 4px;
-                font-size: 0.75rem;
+                padding: 10px 6px;
+                font-size: 0.85rem;
             }
             
             .grade-table-container select {
-                font-size: 0.75rem;
-                padding: 3px 4px;
-                max-width: 60px;
+                font-size: 0.85rem;
+                padding: 4px 6px;
+                max-width: 70px;
             }
             
             .grade-table-container .student-name-cell {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
                 max-width: 100px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+            
+            .grade-table-container .midterm-grade-input {
+                font-size: 0.85rem;
+                padding: 4px 6px;
+                max-width: 70px;
+            }
+            
+            .grade-table-container .remarks-cell {
+                font-size: 0.85rem;
+            }
+            
+            /* Mobile heading adjustments */
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1.2rem; }
+            h4 { font-size: 1.1rem; }
+            
+            .section-title, .dashboard-title, .profile-title {
+                font-size: 1.4rem;
             }
         }
         
         /* Desktop adjustments */
         @media (min-width: 992px) {
             .grade-table-container table {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
             
             .grade-table-container thead th {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
                 padding: 12px 10px;
             }
             
             .grade-table-container tbody td {
                 padding: 12px 10px;
+                font-size: 0.95rem;
             }
             
             .grade-table-container select {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
                 padding: 6px 10px;
-                min-width: 80px;
+                min-width: 90px;
             }
             
             .grade-table-container .student-name-cell {
+                font-size: 0.95rem;
+            }
+            
+            .grade-table-container .midterm-grade-input {
                 font-size: 0.9rem;
+                padding: 6px 10px;
+                min-width: 90px;
+            }
+            
+            .grade-table-container .remarks-cell {
+                font-size: 0.95rem;
             }
         }
         
@@ -532,6 +773,21 @@
         .section-divider {
             margin: 40px 0;
             border-top: 1px solid #dee2e6;
+        }
+        
+        /* No section selected message */
+        #noSectionMessage {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            color: #004085;
+            font-size: 0.95rem;
+        }
+        
+        #noSectionMessage i {
+            color: #0066cc;
         }
         
         .btn-outline-primary {
@@ -579,7 +835,14 @@
         /* Button adjustments */
         .btn {
             border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .btn-sm {
             padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
         }
 
         /* New styles for My Classes header */
@@ -670,7 +933,15 @@
             right: 20px;
         }
         .profile-title {
-            font-weight: bold;
+            color: var(--maroon);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-title i {
+            color: #333;
+            margin-right: 0.5rem;
         }
 
         /* Change Password Modal Styles - Enhanced */
@@ -836,9 +1107,9 @@
 
         .honor-badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
+            padding: 0.35rem 0.85rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             font-weight: 600;
         }
 
@@ -1062,7 +1333,7 @@
                             <div class="col-md-4 col-sm-6 mb-4">
                                 <div class="subject-card card h-100" data-school-year="2024-2025">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
                                             <span class="student-count-badge">
                                                 <i class="fas fa-users me-1"></i> 25 Students
                                             </span>
@@ -1070,8 +1341,7 @@
                                                 <i class="fas fa-check-circle me-1"></i> Completed
                                             </span>
                                         </div>
-                                        <h4 class="card-title">Calculus 101</h4>
-                                        <p class="card-text text-muted">Section A - First Year</p>
+                                        <h4 class="card-title mb-3">Calculus 101</h4>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <span class="text-muted small">
                                                 <i class="fas fa-calendar-week me-1"></i> Mon/Wed/Fri
@@ -1086,7 +1356,7 @@
                             <div class="col-md-4 col-sm-6 mb-4">
                                 <div class="subject-card card h-100" data-school-year="2024-2025">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
                                             <span class="student-count-badge">
                                                 <i class="fas fa-users me-1"></i> 30 Students
                                             </span>
@@ -1094,8 +1364,7 @@
                                                 <i class="fas fa-check-circle me-1"></i> Completed
                                             </span>
                                         </div>
-                                        <h4 class="card-title">Algebra 201</h4>
-                                        <p class="card-text text-muted">Section B - Second Year</p>
+                                        <h4 class="card-title mb-3">Algebra 201</h4>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <span class="text-muted small">
                                                 <i class="fas fa-calendar-week me-1"></i> Tue/Thu
@@ -1110,7 +1379,7 @@
                             <div class="col-md-4 col-sm-6 mb-4">
                                 <div class="subject-card card h-100" data-school-year="2023-2024">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
                                             <span class="student-count-badge">
                                                 <i class="fas fa-users me-1"></i> 28 Students
                                             </span>
@@ -1118,8 +1387,7 @@
                                                 <i class="fas fa-exclamation-triangle me-1"></i> Pending
                                             </span>
                                         </div>
-                                        <h4 class="card-title">Geometry 102</h4>
-                                        <p class="card-text text-muted">Section C - First Year</p>
+                                        <h4 class="card-title mb-3">Geometry 102</h4>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <span class="text-muted small">
                                                 <i class="fas fa-calendar-week me-1"></i> Mon/Wed
@@ -1134,7 +1402,7 @@
                             <div class="col-md-4 col-sm-6 mb-4">
                                 <div class="subject-card card h-100" data-school-year="2023-2024">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
                                             <span class="student-count-badge">
                                                 <i class="fas fa-users me-1"></i> 22 Students
                                             </span>
@@ -1142,8 +1410,7 @@
                                                 <i class="fas fa-exclamation-triangle me-1"></i> Pending
                                             </span>
                                         </div>
-                                        <h4 class="card-title">Statistics 301</h4>
-                                        <p class="card-text text-muted">Section A - Third Year</p>
+                                        <h4 class="card-title mb-3">Statistics 301</h4>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <span class="text-muted small">
                                                 <i class="fas fa-calendar-week me-1"></i> Tue/Thu
@@ -1158,7 +1425,7 @@
                             <div class="col-md-4 col-sm-6 mb-4">
                                 <div class="subject-card card h-100" data-school-year="2022-2023">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
                                             <span class="student-count-badge">
                                                 <i class="fas fa-users me-1"></i> 15 Students
                                             </span>
@@ -1166,8 +1433,7 @@
                                                 <i class="fas fa-exclamation-triangle me-1"></i> Pending
                                             </span>
                                         </div>
-                                        <h4 class="card-title">Trigonometry 202</h4>
-                                        <p class="card-text text-muted">Section D - Second Year</p>
+                                        <h4 class="card-title mb-3">Trigonometry 202</h4>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <span class="text-muted small">
                                                 <i class="fas fa-calendar-week me-1"></i> Mon-Fri
@@ -1186,11 +1452,16 @@
                     <div id="calculus-101-section" class="grade-management-section">
                         <!-- Header Section -->
                         <div class="mb-4">
-                            <button class="btn btn-outline-secondary btn-sm back-to-classes mb-3">
-                                <i class="fas fa-arrow-left"></i> Back
-                            </button>
+                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                                <button class="btn btn-outline-secondary btn-sm back-to-classes">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" id="exportBtn" style="display: none;">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                            </div>
                             <h2 class="mb-2 dashboard-title">
-                                <i class="fas fa-book text-dark me-2"></i>Calculus 101 - Section A
+                                <i class="fas fa-book text-dark me-2"></i>Calculus 101
                             </h2>
                             <p class="text-muted" style="margin-left: 0;"><i class="fas fa-users me-1"></i>25 Students Enrolled</p>
                         </div>
@@ -1198,41 +1469,36 @@
                         <!-- Compact Filters -->
                         <div class="compact-filters">
                             <div class="row g-2">
-                                <div class="col-md-5 col-12">
+                                <div class="col-md-4 col-12">
                                     <label class="form-label">Search</label>
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Name or ID...">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Name or ID..." onkeyup="filterStudents()" disabled>
                                 </div>
-                                <div class="col-md-3 col-6">
-                                    <label class="form-label">Year</label>
-                                    <select class="form-select">
-                                        <option value="">All</option>
-                                        <option>1st</option>
-                                        <option>2nd</option>
-                                        <option>3rd</option>
-                                        <option>4th</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3 col-6">
+                                <div class="col-md-4 col-12">
                                     <label class="form-label">Section</label>
-                                    <select class="form-select">
-                                        <option value="">All</option>
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                        <option>D</option>
+                                    <select class="form-select" id="sectionFilter" onchange="onSectionChange()">
+                                        <option value="">-- Select Section --</option>
+                                        <option value="LA001" data-year="1st">LA001</option>
+                                        <option value="LA002" data-year="1st">LA002</option>
+                                        <option value="LA003" data-year="2nd">LA003</option>
+                                        <option value="LA004" data-year="3rd">LA004</option>
+                                        <option value="LA005" data-year="4th">LA005</option>
                                     </select>
                                 </div>
-                                <div class="col-md-1 col-12">
-                                    <label class="form-label d-none d-md-block">&nbsp;</label>
-                                    <button class="btn btn-outline-secondary w-100">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>
+                                <div class="col-md-4 col-12">
+                                    <label class="form-label">Year Level</label>
+                                    <input type="text" class="form-control" id="yearDisplay" readonly placeholder="--" style="background-color: #f8f9fa;">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Grade Table (Mobile & Desktop) -->
-                        <div class="grade-table-container">
+                        <!-- Message when no section selected -->
+                        <div class="alert alert-info text-center" id="noSectionMessage">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Please select a section to view and manage grades
+                        </div>
+
+                        <!-- Grade Table (Mobile & Desktop) - Hidden initially -->
+                        <div class="grade-table-container" id="gradeTableContainer" style="display: none;">
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <thead>
@@ -1244,27 +1510,15 @@
                                             <th>Remarks</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="gradeTableBody">
                                         <tr>
                                             <td class="student-id-cell">S1001</td>
                                             <td class="student-name-cell">Alice Johnson</td>
                                             <td>
-                                                <select class="midterm-grade" onchange="updateGPA(this)">
-                                                    <option value="">--</option>
-                                                    <option value="1.00">1.00</option>
-                                                    <option value="1.25">1.25</option>
-                                                    <option value="1.50">1.50</option>
-                                                    <option value="1.75" selected>1.75</option>
-                                                    <option value="2.00">2.00</option>
-                                                    <option value="2.25">2.25</option>
-                                                    <option value="2.50">2.50</option>
-                                                    <option value="2.75">2.75</option>
-                                                    <option value="3.00">3.00</option>
-                                                    <option value="5.00">5.00</option>
-                                                </select>
+                                                <input type="text" class="form-control midterm-grade-input" value="88" placeholder="0-100">
                                             </td>
                                             <td>
-                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                <select class="final-grade" onchange="updateRemarks(this)">
                                                     <option value="">--</option>
                                                     <option value="1.00">1.00</option>
                                                     <option value="1.25">1.25</option>
@@ -1276,36 +1530,20 @@
                                                     <option value="2.75">2.75</option>
                                                     <option value="3.00">3.00</option>
                                                     <option value="5.00">5.00</option>
+                                                    <option value="0">0</option>
+                                                    <option value="INC">INC</option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
-                                                    <option value="Passed" selected>Passed</option>
-                                                    <option value="Failed">Failed</option>
-                                                    <option value="Incomplete">Incomplete</option>
-                                                </select>
-                                            </td>
+                                            <td class="remarks-cell status-passed">Passed</td>
                                         </tr>
                                         <tr>
                                             <td class="student-id-cell">S1002</td>
                                             <td class="student-name-cell">Bob Smith</td>
                                             <td>
-                                                <select class="midterm-grade" onchange="updateGPA(this)">
-                                                    <option value="">--</option>
-                                                    <option value="1.00">1.00</option>
-                                                    <option value="1.25">1.25</option>
-                                                    <option value="1.50">1.50</option>
-                                                    <option value="1.75">1.75</option>
-                                                    <option value="2.00">2.00</option>
-                                                    <option value="2.25">2.25</option>
-                                                    <option value="2.50">2.50</option>
-                                                    <option value="2.75">2.75</option>
-                                                    <option value="3.00" selected>3.00</option>
-                                                    <option value="5.00">5.00</option>
-                                                </select>
+                                                <input type="text" class="form-control midterm-grade-input" value="76" placeholder="0-100">
                                             </td>
                                             <td>
-                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                <select class="final-grade" onchange="updateRemarks(this)">
                                                     <option value="">--</option>
                                                     <option value="1.00">1.00</option>
                                                     <option value="1.25">1.25</option>
@@ -1317,21 +1555,20 @@
                                                     <option value="2.75">2.75</option>
                                                     <option value="3.00">3.00</option>
                                                     <option value="5.00">5.00</option>
+                                                    <option value="0">0</option>
+                                                    <option value="INC">INC</option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
-                                                    <option value="Passed" selected>Passed</option>
-                                                    <option value="Failed">Failed</option>
-                                                    <option value="Incomplete">Incomplete</option>
-                                                </select>
-                                            </td>
+                                            <td class="remarks-cell status-passed">Passed</td>
                                         </tr>
                                         <tr>
                                             <td class="student-id-cell">S1003</td>
                                             <td class="student-name-cell">Charlie Brown</td>
                                             <td>
-                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                <input type="text" class="form-control midterm-grade-input" value="92" placeholder="0-100">
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateRemarks(this)">
                                                     <option value="">--</option>
                                                     <option value="1.00">1.00</option>
                                                     <option value="1.25">1.25</option>
@@ -1343,36 +1580,20 @@
                                                     <option value="2.75">2.75</option>
                                                     <option value="3.00">3.00</option>
                                                     <option value="5.00">5.00</option>
+                                                    <option value="0">0</option>
+                                                    <option value="INC">INC</option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <select class="final-grade" onchange="updateGPA(this)">
-                                                    <option value="">--</option>
-                                                    <option value="1.00">1.00</option>
-                                                    <option value="1.25">1.25</option>
-                                                    <option value="1.50" selected>1.50</option>
-                                                    <option value="1.75">1.75</option>
-                                                    <option value="2.00">2.00</option>
-                                                    <option value="2.25">2.25</option>
-                                                    <option value="2.50">2.50</option>
-                                                    <option value="2.75">2.75</option>
-                                                    <option value="3.00">3.00</option>
-                                                    <option value="5.00">5.00</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
-                                                    <option value="Passed" selected>Passed</option>
-                                                    <option value="Failed">Failed</option>
-                                                    <option value="Incomplete">Incomplete</option>
-                                                </select>
-                                            </td>
+                                            <td class="remarks-cell status-passed">Passed</td>
                                         </tr>
                                         <tr>
                                             <td class="student-id-cell">S1004</td>
                                             <td class="student-name-cell">Diana Martinez</td>
                                             <td>
-                                                <select class="midterm-grade" onchange="updateGPA(this)">
+                                                <input type="text" class="form-control midterm-grade-input" value="65" placeholder="0-100">
+                                            </td>
+                                            <td>
+                                                <select class="final-grade" onchange="updateRemarks(this)">
                                                     <option value="">--</option>
                                                     <option value="1.00">1.00</option>
                                                     <option value="1.25">1.25</option>
@@ -1384,51 +1605,20 @@
                                                     <option value="2.75">2.75</option>
                                                     <option value="3.00">3.00</option>
                                                     <option value="5.00" selected>5.00</option>
+                                                    <option value="0">0</option>
+                                                    <option value="INC">INC</option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <select class="final-grade" onchange="updateGPA(this)">
-                                                    <option value="">--</option>
-                                                    <option value="1.00">1.00</option>
-                                                    <option value="1.25">1.25</option>
-                                                    <option value="1.50">1.50</option>
-                                                    <option value="1.75">1.75</option>
-                                                    <option value="2.00">2.00</option>
-                                                    <option value="2.25">2.25</option>
-                                                    <option value="2.50">2.50</option>
-                                                    <option value="2.75">2.75</option>
-                                                    <option value="3.00">3.00</option>
-                                                    <option value="5.00" selected>5.00</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <select class="status-failed" onchange="updateRemarksStyle(this)">
-                                                    <option value="Passed">Passed</option>
-                                                    <option value="Failed" selected>Failed</option>
-                                                    <option value="Incomplete">Incomplete</option>
-                                                </select>
-                                            </td>
+                                            <td class="remarks-cell status-failed">Failed</td>
                                         </tr>
                                         <tr>
                                             <td class="student-id-cell">S1005</td>
                                             <td class="student-name-cell">Edward Thompson</td>
                                             <td>
-                                                <select class="midterm-grade" onchange="updateGPA(this)">
-                                                    <option value="">--</option>
-                                                    <option value="1.00">1.00</option>
-                                                    <option value="1.25" selected>1.25</option>
-                                                    <option value="1.50">1.50</option>
-                                                    <option value="1.75">1.75</option>
-                                                    <option value="2.00">2.00</option>
-                                                    <option value="2.25">2.25</option>
-                                                    <option value="2.50">2.50</option>
-                                                    <option value="2.75">2.75</option>
-                                                    <option value="3.00">3.00</option>
-                                                    <option value="5.00">5.00</option>
-                                                </select>
+                                                <input type="text" class="form-control midterm-grade-input" value="95" placeholder="0-100">
                                             </td>
                                             <td>
-                                                <select class="final-grade" onchange="updateGPA(this)">
+                                                <select class="final-grade" onchange="updateRemarks(this)">
                                                     <option value="">--</option>
                                                     <option value="1.00" selected>1.00</option>
                                                     <option value="1.25">1.25</option>
@@ -1440,23 +1630,19 @@
                                                     <option value="2.75">2.75</option>
                                                     <option value="3.00">3.00</option>
                                                     <option value="5.00">5.00</option>
+                                                    <option value="0">0</option>
+                                                    <option value="INC">INC</option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <select class="status-passed" onchange="updateRemarksStyle(this)">
-                                                    <option value="Passed" selected>Passed</option>
-                                                    <option value="Failed">Failed</option>
-                                                    <option value="Incomplete">Incomplete</option>
-                                                </select>
-                                            </td>
+                                            <td class="remarks-cell status-passed">Passed</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
-                        <!-- Action Buttons -->
-                        <div class="action-buttons-section">
+                        <!-- Action Buttons (Hidden - replaced by floating buttons) -->
+                        <div class="action-buttons-section" style="display: none;">
                             <div class="info-text">
                                 <i class="fas fa-info-circle"></i> Ensure all grades are entered before submitting
                             </div>
@@ -1468,6 +1654,13 @@
                                     <i class="fas fa-paper-plane"></i> Submit
                                 </button>
                             </div>
+                        </div>
+                        
+                        <!-- Floating Action Button - Submit only -->
+                        <div class="action-buttons-floating" id="floatingButtons">
+                            <button class="btn btn-maroon" onclick="submitGrades()">
+                                <i class="fas fa-paper-plane"></i> Submit Grades
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1792,6 +1985,9 @@
                 $('#' + target).addClass('active');
                 $('.nav-link').removeClass('active');
                 $(this).addClass('active');
+                
+                // Hide floating buttons when navigating away from grade management
+                $('#floatingButtons').removeClass('show');
             }
         });
 
@@ -1800,53 +1996,196 @@
             const target = $(this).data('target');
             $('.class-list').hide();
             $('#' + target).show().addClass('active');
+            
+            // Show floating buttons when viewing a class
+            $('#floatingButtons').addClass('show');
         });
 
         // Back to classes button
         $('.back-to-classes').on('click', function() {
             $('.grade-management-section').hide().removeClass('active');
             $('.class-list').show();
+            
+            // Hide floating buttons when going back to class list
+            $('#floatingButtons').removeClass('show');
         });
 
-        function updateGPA(select) {
+        // Function to update remarks based on final grade selection
+        function updateRemarks(select) {
             // Find the parent row
             const row = $(select).closest('tr');
             
-            // Get the final grade select
-            const finalSelect = row.find('.final-grade');
-            const remarkSelect = row.find('td:last-child select');
+            // Get the remarks cell
+            const remarksCell = row.find('.remarks-cell');
             
-            const finalValue = finalSelect.val().trim();
+            const finalValue = $(select).val().trim();
 
             // Check for blank selection
             if (finalValue === "") {
+                remarksCell.text('--');
+                remarksCell.removeClass('status-passed status-failed status-incomplete status-drop');
                 return;
             }
 
-            const finalGrade = parseFloat(finalValue);
+            // Remove all status classes
+            remarksCell.removeClass('status-passed status-failed status-incomplete status-drop');
 
-            // Auto-update remarks based on final grade
-            if (finalGrade <= 3.00) {
-                remarkSelect.val('Passed');
-                remarkSelect.removeClass('status-failed status-incomplete').addClass('status-passed');
+            // Determine remark based on final grade
+            if (finalValue === "0") {
+                // Grade 0 means DROP
+                remarksCell.text('DROP');
+                remarksCell.addClass('status-drop');
+            } else if (finalValue === "INC") {
+                // INC grade
+                remarksCell.text('Incomplete');
+                remarksCell.addClass('status-incomplete');
             } else {
-                remarkSelect.val('Failed');
-                remarkSelect.removeClass('status-passed status-incomplete').addClass('status-failed');
+                const finalGrade = parseFloat(finalValue);
+                
+                // Auto-update remarks based on final grade
+                if (finalGrade <= 3.00) {
+                    remarksCell.text('Passed');
+                    remarksCell.addClass('status-passed');
+                } else {
+                    remarksCell.text('Failed');
+                    remarksCell.addClass('status-failed');
+                }
             }
         }
 
-        // Function to update remarks select styling when manually changed
-        function updateRemarksStyle(select) {
-            const value = $(select).val();
-            $(select).removeClass('status-passed status-failed status-incomplete');
+        // Sample student data for different sections
+        const studentData = {
+            'LA001': [
+                { id: 'S1001', name: 'Alice Johnson', midterm: '88', final: '1.50' },
+                { id: 'S1002', name: 'Bob Smith', midterm: '76', final: '2.25' },
+                { id: 'S1003', name: 'Charlie Brown', midterm: '92', final: '1.50' },
+                { id: 'S1004', name: 'Diana Martinez', midterm: '65', final: '5.00' },
+                { id: 'S1005', name: 'Edward Thompson', midterm: '95', final: '1.00' }
+            ],
+            'LA002': [
+                { id: 'S2001', name: 'Frank Wilson', midterm: '82', final: '2.00' },
+                { id: 'S2002', name: 'Grace Lee', midterm: '91', final: '1.25' },
+                { id: 'S2003', name: 'Henry Davis', midterm: '78', final: '2.50' }
+            ],
+            'LA003': [
+                { id: 'S3001', name: 'Iris Taylor', midterm: '85', final: '1.75' },
+                { id: 'S3002', name: 'Jack Moore', midterm: '73', final: '3.00' },
+                { id: 'S3003', name: 'Kelly White', midterm: '89', final: '1.50' }
+            ],
+            'LA004': [
+                { id: 'S4001', name: 'Liam Harris', midterm: '94', final: '1.00' },
+                { id: 'S4002', name: 'Mia Clark', midterm: '87', final: '1.75' }
+            ],
+            'LA005': [
+                { id: 'S5001', name: 'Noah Lewis', midterm: '81', final: '2.25' },
+                { id: 'S5002', name: 'Olivia Walker', midterm: '90', final: '1.50' },
+                { id: 'S5003', name: 'Peter Hall', midterm: '88', final: '1.75' }
+            ]
+        };
+
+        // Function called when section changes
+        function onSectionChange() {
+            const sectionSelect = document.getElementById('sectionFilter');
+            const selectedOption = sectionSelect.options[sectionSelect.selectedIndex];
+            const section = sectionSelect.value;
+            const year = selectedOption.getAttribute('data-year');
             
-            if (value === 'Passed') {
-                $(select).addClass('status-passed');
-            } else if (value === 'Failed') {
-                $(select).addClass('status-failed');
-            } else if (value === 'Incomplete') {
-                $(select).addClass('status-incomplete');
+            const yearDisplay = document.getElementById('yearDisplay');
+            const searchInput = document.getElementById('searchInput');
+            const noSectionMessage = document.getElementById('noSectionMessage');
+            const gradeTableContainer = document.getElementById('gradeTableContainer');
+            const exportBtn = document.getElementById('exportBtn');
+            
+            if (section && section !== '') {
+                // Show year level
+                yearDisplay.value = year + ' Year';
+                
+                // Enable search
+                searchInput.disabled = false;
+                
+                // Show export button
+                exportBtn.style.display = 'inline-block';
+                
+                // Hide message and show table
+                noSectionMessage.style.display = 'none';
+                gradeTableContainer.style.display = 'block';
+                
+                // Load student data for selected section
+                loadStudentData(section);
+                
+                // Show floating buttons
+                $('#floatingButtons').addClass('show');
+            } else {
+                // Reset everything
+                yearDisplay.value = '';
+                searchInput.disabled = true;
+                searchInput.value = '';
+                
+                // Hide export button
+                exportBtn.style.display = 'none';
+                
+                // Show message and hide table
+                noSectionMessage.style.display = 'block';
+                gradeTableContainer.style.display = 'none';
+                
+                // Hide floating buttons
+                $('#floatingButtons').removeClass('show');
             }
+        }
+
+        // Function to load student data into table
+        function loadStudentData(section) {
+            const tbody = document.getElementById('gradeTableBody');
+            const students = studentData[section] || [];
+            
+            tbody.innerHTML = '';
+            
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                
+                // Determine remarks based on final grade
+                let remarks = 'Passed';
+                let remarksClass = 'status-passed';
+                
+                if (student.final === '0') {
+                    remarks = 'DROP';
+                    remarksClass = 'status-drop';
+                } else if (student.final === 'INC') {
+                    remarks = 'Incomplete';
+                    remarksClass = 'status-incomplete';
+                } else if (parseFloat(student.final) > 3.00) {
+                    remarks = 'Failed';
+                    remarksClass = 'status-failed';
+                }
+                
+                row.innerHTML = `
+                    <td class="student-id-cell">${student.id}</td>
+                    <td class="student-name-cell">${student.name}</td>
+                    <td>
+                        <input type="text" class="form-control midterm-grade-input" value="${student.midterm}" placeholder="0-100">
+                    </td>
+                    <td>
+                        <select class="final-grade" onchange="updateRemarks(this)">
+                            <option value="">--</option>
+                            <option value="1.00" ${student.final === '1.00' ? 'selected' : ''}>1.00</option>
+                            <option value="1.25" ${student.final === '1.25' ? 'selected' : ''}>1.25</option>
+                            <option value="1.50" ${student.final === '1.50' ? 'selected' : ''}>1.50</option>
+                            <option value="1.75" ${student.final === '1.75' ? 'selected' : ''}>1.75</option>
+                            <option value="2.00" ${student.final === '2.00' ? 'selected' : ''}>2.00</option>
+                            <option value="2.25" ${student.final === '2.25' ? 'selected' : ''}>2.25</option>
+                            <option value="2.50" ${student.final === '2.50' ? 'selected' : ''}>2.50</option>
+                            <option value="2.75" ${student.final === '2.75' ? 'selected' : ''}>2.75</option>
+                            <option value="3.00" ${student.final === '3.00' ? 'selected' : ''}>3.00</option>
+                            <option value="5.00" ${student.final === '5.00' ? 'selected' : ''}>5.00</option>
+                            <option value="0" ${student.final === '0' ? 'selected' : ''}>0</option>
+                            <option value="INC" ${student.final === 'INC' ? 'selected' : ''}>INC</option>
+                        </select>
+                    </td>
+                    <td class="remarks-cell ${remarksClass}">${remarks}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
         }
 
         function submitGrades() {
@@ -1854,7 +2193,7 @@
             
             // Check all table rows
             $('.grade-table-container tbody tr').each(function() {
-                const midterm = $(this).find('.midterm-grade').val()?.trim();
+                const midterm = $(this).find('.midterm-grade-input').val()?.trim();
                 const final = $(this).find('.final-grade').val()?.trim();
 
                 if (!midterm || midterm === "" || !final || final === "") {
@@ -1863,11 +2202,52 @@
             });
 
             if (hasEmpty) {
-                alert("Please select grades for all students before submitting.");
+                alert("Please enter grades for all students before submitting.");
                 return;
             }
 
             alert("Grades submitted successfully!");
+        }
+
+        // Filter students function
+        function filterStudents() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const tbody = document.getElementById('gradeTableBody');
+            const rows = tbody.getElementsByTagName('tr');
+            
+            for (let i = 0; i < rows.length; i++) {
+                const idCell = rows[i].getElementsByClassName('student-id-cell')[0];
+                const nameCell = rows[i].getElementsByClassName('student-name-cell')[0];
+                
+                if (idCell && nameCell) {
+                    const id = idCell.textContent.toLowerCase();
+                    const name = nameCell.textContent.toLowerCase();
+                    
+                    if (id.includes(searchQuery) || name.includes(searchQuery)) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Reset filters function (can be called programmatically if needed)
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sectionFilter').selectedIndex = 0;
+            document.getElementById('yearDisplay').value = '';
+            document.getElementById('exportBtn').style.display = 'none';
+            
+            // Hide table and show message
+            document.getElementById('noSectionMessage').style.display = 'block';
+            document.getElementById('gradeTableContainer').style.display = 'none';
+            
+            // Disable search
+            document.getElementById('searchInput').disabled = true;
+            
+            // Hide floating buttons
+            $('#floatingButtons').removeClass('show');
         }
 
         // Leaderboard filtering functionality

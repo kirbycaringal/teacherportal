@@ -1456,9 +1456,14 @@
                                 <button class="btn btn-outline-secondary btn-sm back-to-classes">
                                     <i class="fas fa-arrow-left"></i> Back
                                 </button>
-                                <button class="btn btn-outline-secondary btn-sm" id="exportBtn" style="display: none;">
-                                    <i class="fas fa-download"></i> Export
-                                </button>
+                                <div class="d-flex gap-2" id="actionButtonsTop" style="display: none !important;">
+                                    <button class="btn btn-outline-secondary btn-sm" id="exportBtn">
+                                        <i class="fas fa-download"></i> Export
+                                    </button>
+                                    <button class="btn btn-maroon btn-sm" onclick="submitGrades()">
+                                        <i class="fas fa-paper-plane"></i> Submit
+                                    </button>
+                                </div>
                             </div>
                             <h2 class="mb-2 dashboard-title">
                                 <i class="fas fa-book text-dark me-2"></i>Calculus 101
@@ -1655,13 +1660,7 @@
                                 </button>
                             </div>
                         </div>
-                        
-                        <!-- Floating Action Button - Submit only -->
-                        <div class="action-buttons-floating" id="floatingButtons">
-                            <button class="btn btn-maroon" onclick="submitGrades()">
-                                <i class="fas fa-paper-plane"></i> Submit Grades
-                            </button>
-                        </div>
+
                     </div>
                 </div>
 
@@ -1714,25 +1713,20 @@
                             </div>
 
                             <!-- Leaderboard Table -->
-                            <div class="card">
-                                <div class="card-header bg-maroon text-white">
-                                    <h5 class="mb-0"><i class="fas fa-list-ol"></i> Complete Rankings</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover" id="leaderboardTable">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th style="width: 80px;">Rank</th>
-                                                    <th>Student ID</th>
-                                                    <th>Name</th>
-                                                    <th>Department</th>
-                                                    <th>Year Level</th>
-                                                    <th>GWA</th>
-                                                    <th>Academic Scholar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="leaderboardTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 80px;">Rank</th>
+                                            <th>Student ID</th>
+                                            <th>Name</th>
+                                            <th>Department</th>
+                                            <th>Year Level</th>
+                                            <th>GWA</th>
+                                            <th>Academic Scholar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                                 <tr data-honor="University Scholar" data-dept="BSIT" data-year="2024-2025">
                                                     <td>1</td>
                                                     <td>A25-0001</td>
@@ -1853,8 +1847,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1985,9 +1977,6 @@
                 $('#' + target).addClass('active');
                 $('.nav-link').removeClass('active');
                 $(this).addClass('active');
-                
-                // Hide floating buttons when navigating away from grade management
-                $('#floatingButtons').removeClass('show');
             }
         });
 
@@ -1996,18 +1985,12 @@
             const target = $(this).data('target');
             $('.class-list').hide();
             $('#' + target).show().addClass('active');
-            
-            // Show floating buttons when viewing a class
-            $('#floatingButtons').addClass('show');
         });
 
         // Back to classes button
         $('.back-to-classes').on('click', function() {
             $('.grade-management-section').hide().removeClass('active');
             $('.class-list').show();
-            
-            // Hide floating buttons when going back to class list
-            $('#floatingButtons').removeClass('show');
         });
 
         // Function to update remarks based on final grade selection
@@ -2094,7 +2077,7 @@
             const searchInput = document.getElementById('searchInput');
             const noSectionMessage = document.getElementById('noSectionMessage');
             const gradeTableContainer = document.getElementById('gradeTableContainer');
-            const exportBtn = document.getElementById('exportBtn');
+            const actionButtonsTop = document.getElementById('actionButtonsTop');
             
             if (section && section !== '') {
                 // Show year level
@@ -2103,8 +2086,8 @@
                 // Enable search
                 searchInput.disabled = false;
                 
-                // Show export button
-                exportBtn.style.display = 'inline-block';
+                // Show action buttons at top
+                actionButtonsTop.style.display = 'flex';
                 
                 // Hide message and show table
                 noSectionMessage.style.display = 'none';
@@ -2112,24 +2095,18 @@
                 
                 // Load student data for selected section
                 loadStudentData(section);
-                
-                // Show floating buttons
-                $('#floatingButtons').addClass('show');
             } else {
                 // Reset everything
                 yearDisplay.value = '';
                 searchInput.disabled = true;
                 searchInput.value = '';
                 
-                // Hide export button
-                exportBtn.style.display = 'none';
+                // Hide action buttons
+                actionButtonsTop.style.display = 'none';
                 
                 // Show message and hide table
                 noSectionMessage.style.display = 'block';
                 gradeTableContainer.style.display = 'none';
-                
-                // Hide floating buttons
-                $('#floatingButtons').removeClass('show');
             }
         }
 
@@ -2237,7 +2214,7 @@
             document.getElementById('searchInput').value = '';
             document.getElementById('sectionFilter').selectedIndex = 0;
             document.getElementById('yearDisplay').value = '';
-            document.getElementById('exportBtn').style.display = 'none';
+            document.getElementById('actionButtonsTop').style.display = 'none';
             
             // Hide table and show message
             document.getElementById('noSectionMessage').style.display = 'block';
@@ -2245,9 +2222,6 @@
             
             // Disable search
             document.getElementById('searchInput').disabled = true;
-            
-            // Hide floating buttons
-            $('#floatingButtons').removeClass('show');
         }
 
         // Leaderboard filtering functionality

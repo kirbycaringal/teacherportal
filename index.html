@@ -1099,6 +1099,16 @@
         }
 
         /* Leaderboard Styles from Admin */
+        #leaderboardTable thead {
+            background-color: #800000 !important;
+        }
+        
+        #leaderboardTable thead th {
+            background-color: #800000 !important;
+            color: white !important;
+            border-color: #800000 !important;
+        }
+        
         .gwa-display {
             font-size: 1rem;
             font-weight: normal;
@@ -1213,6 +1223,26 @@
             
             .action-buttons-section .btn {
                 width: 100%;
+            }
+            
+            /* Leaderboard table mobile adjustments */
+            #leaderboardTable {
+                font-size: 0.75rem;
+            }
+            
+            #leaderboardTable thead th {
+                font-size: 0.7rem;
+                padding: 8px 4px;
+            }
+            
+            #leaderboardTable tbody td {
+                font-size: 0.75rem;
+                padding: 8px 4px;
+            }
+            
+            #leaderboardTable .honor-badge {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.5rem;
             }
         }
     </style>
@@ -1715,7 +1745,7 @@
                             <!-- Leaderboard Table -->
                             <div class="table-responsive">
                                 <table class="table table-hover" id="leaderboardTable">
-                                    <thead class="table-light">
+                                    <thead class="bg-maroon text-white">
                                         <tr>
                                             <th style="width: 80px;">Rank</th>
                                             <th>Student ID</th>

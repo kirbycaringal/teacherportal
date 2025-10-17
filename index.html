@@ -1167,9 +1167,11 @@
         /* Table wrapper improvements */
         #leaderboards-content .table-responsive {
             border-radius: 10px;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             background: white;
+            -webkit-overflow-scrolling: touch;
         }
         
         #leaderboardTable {
@@ -1454,7 +1456,7 @@
             /* Leaderboard table mobile adjustments */
             #leaderboardTable {
                 font-size: 0.7rem;
-                width: 100%;
+                min-width: 500px;
             }
             
             #leaderboardTable thead th {
@@ -1466,8 +1468,7 @@
             #leaderboardTable tbody td {
                 font-size: 0.7rem;
                 padding: 6px 2px;
-                white-space: normal;
-                word-wrap: break-word;
+                white-space: nowrap;
             }
             
             #leaderboardTable tbody td:first-child {
@@ -1475,37 +1476,45 @@
                 font-weight: 700;
             }
             
-            /* Mobile: Remove badge styling, show as plain colored text */
+            /* Optimize column widths for mobile */
+            #leaderboardTable tbody td:first-child,
+            #leaderboardTable thead th:first-child {
+                width: 35px;
+                max-width: 35px;
+                padding: 6px 1px;
+            }
+            
+            /* Make Academic Scholar column take more space and require scroll */
+            #leaderboardTable tbody td:last-child,
+            #leaderboardTable thead th:last-child {
+                min-width: 120px;
+            }
+            
+            /* Mobile: Keep badge styling like desktop but smaller */
             #leaderboardTable .honor-badge {
-                font-size: 0.65rem;
-                padding: 0;
-                background: none !important;
-                box-shadow: none !important;
-                border-radius: 0;
-                text-transform: none;
-                letter-spacing: normal;
+                font-size: 0.6rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 12px;
                 font-weight: 600;
-                display: inline;
+                text-transform: uppercase;
+                letter-spacing: 0.2px;
+                white-space: nowrap;
+                display: inline-block;
             }
             
             #leaderboardTable .honor-badge.university-scholar {
-                background: none !important;
-                color: #FF8C00 !important;
+                background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+                color: #000;
             }
             
             #leaderboardTable .honor-badge.college-scholar {
-                background: none !important;
-                color: #808080 !important;
+                background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%);
+                color: #000;
             }
             
             #leaderboardTable .honor-badge.deans-lister {
-                background: none !important;
-                color: #800000 !important;
-            }
-            
-            /* Remove scroll hint on mobile since table now fits */
-            #leaderboards-content .table-responsive::after {
-                display: none;
+                background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
+                color: #fff;
             }
             
             /* Filter section mobile adjustments */
@@ -2099,7 +2108,7 @@
                                 <table class="table table-hover" id="leaderboardTable">
                                     <thead class="bg-maroon text-white">
                                         <tr>
-                                            <th style="width: 80px;">Rank</th>
+                                            <th>Rank</th>
                                             <th>Student ID</th>
                                             <th>Name</th>
                                             <th>Department</th>

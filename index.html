@@ -406,30 +406,48 @@
         
         .compact-filters {
             background: white;
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .compact-filters .form-label {
             font-size: 0.9rem;
             color: #495057;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
+        }
+        
+        .compact-filters .form-label i {
+            color: #800000;
+            font-size: 0.85rem;
+            margin-right: 0.3rem;
         }
         
         .compact-filters .form-control,
         .compact-filters .form-select {
             font-size: 0.95rem;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
+            padding: 0.625rem 0.875rem;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s ease;
+            width: 100%;
+            height: auto;
+            line-height: 1.5;
+        }
+        
+        .compact-filters .form-control:focus,
+        .compact-filters .form-select:focus {
+            border-color: #800000;
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+            outline: none;
         }
         
         .compact-filters .btn {
             font-size: 0.95rem;
-            padding: 8px 12px;
+            padding: 0.625rem 1.25rem;
         }
         
         /* Mobile and Desktop Table View */
@@ -484,6 +502,7 @@
             font-weight: 400;
             width: 100%;
             max-width: 80px;
+            min-width: 80px;
             background-color: #f8f9fa;
         }
         
@@ -542,7 +561,9 @@
             font-weight: 400;
             width: 100%;
             max-width: 80px;
+            min-width: 80px;
             background-color: white;
+            height: auto;
         }
         
         .grade-table-container .midterm-grade-input:focus {
@@ -580,9 +601,10 @@
         /* Mobile specific adjustments */
         @media (max-width: 991px) {
             .grade-table-container .midterm-grade-input {
-                font-size: 0.75rem;
-                padding: 3px 4px;
-                max-width: 60px;
+                font-size: 0.85rem;
+                padding: 4px 6px;
+                max-width: 70px;
+                min-width: 70px;
             }
             
             .grade-table-container .remarks-cell {
@@ -593,9 +615,10 @@
         /* Desktop adjustments */
         @media (min-width: 992px) {
             .grade-table-container .midterm-grade-input {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
                 padding: 6px 10px;
-                min-width: 80px;
+                min-width: 90px;
+                max-width: 90px;
             }
             
             .grade-table-container .remarks-cell {
@@ -672,6 +695,7 @@
                 font-size: 0.85rem;
                 padding: 4px 6px;
                 max-width: 70px;
+                min-width: 70px;
             }
             
             .grade-table-container .student-name-cell {
@@ -722,6 +746,7 @@
                 font-size: 0.9rem;
                 padding: 6px 10px;
                 min-width: 90px;
+                max-width: 90px;
             }
             
             .grade-table-container .student-name-cell {
@@ -1100,13 +1125,51 @@
 
         /* Leaderboard Styles from Admin */
         #leaderboardTable thead {
-            background-color: #800000 !important;
+            background: linear-gradient(135deg, #800000 0%, #a52a2a 100%) !important;
         }
         
         #leaderboardTable thead th {
-            background-color: #800000 !important;
+            background: linear-gradient(135deg, #800000 0%, #a52a2a 100%) !important;
             color: white !important;
             border-color: #800000 !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px 10px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            border: none;
+        }
+        
+        #leaderboardTable tbody tr {
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        #leaderboardTable tbody tr:hover {
+            background-color: #fff5f5;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        #leaderboardTable tbody td {
+            padding: 12px 10px;
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+        
+        #leaderboardTable tbody td:first-child {
+            font-weight: 600;
+            color: #800000;
+            font-size: 1rem;
+        }
+        
+        /* Table wrapper improvements */
+        #leaderboards-content .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background: white;
         }
         
         .gwa-display {
@@ -1117,33 +1180,96 @@
 
         .honor-badge {
             display: inline-block;
-            padding: 0.35rem 0.85rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 20px;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .honor-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
         }
 
         .university-scholar {
-            background-color: #FFD700;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             color: #000;
         }
 
         .college-scholar {
-            background-color: #C0C0C0;
+            background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%);
             color: #000;
         }
 
         .deans-lister {
-            background-color: var(--maroon);
+            background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
             color: #fff;
         }
 
         .filter-section {
             background-color: white;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .filter-section .form-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .filter-section .form-label i {
+            color: #800000;
+            font-size: 0.85rem;
+        }
+        
+        .filter-section .form-select {
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-section .form-select:focus {
+            border-color: #800000;
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+        }
+        
+        /* Search bar improvements */
+        #leaderboards-content .form-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        #leaderboards-content .form-label i {
+            color: #800000;
+            font-size: 0.85rem;
+            margin-right: 0.3rem;
+        }
+        
+        #leaderboards-content #leaderboardSearch {
+            border: 1px solid #dee2e6;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        #leaderboards-content #leaderboardSearch:focus {
+            border-color: #800000;
+            box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+            outline: none;
         }
 
         .bg-maroon {
@@ -1182,6 +1308,70 @@
         .status-pending {
             background-color: #fff3cd;
             color: #997404;
+        }
+        
+        /* Desktop enhancements for leaderboard */
+        @media (min-width: 992px) {
+            #leaderboards-content .card {
+                padding: 10px;
+            }
+            
+            #leaderboards-content .section-title {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            #leaderboardTable tbody td {
+                padding: 14px 12px;
+                font-size: 0.95rem;
+            }
+            
+            #leaderboardTable thead th {
+                padding: 14px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .filter-section {
+                padding: 25px;
+            }
+            
+            .filter-section .form-label {
+                font-size: 0.95rem;
+            }
+            
+            .filter-section .form-select {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+            }
+            
+            #leaderboards-content .form-label {
+                font-size: 0.95rem;
+            }
+            
+            #leaderboards-content #leaderboardSearch {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .honor-badge {
+                font-size: 0.85rem;
+                padding: 0.45rem 1rem;
+            }
+            
+            /* Compact filters desktop enhancements */
+            .compact-filters {
+                padding: 25px;
+            }
+            
+            .compact-filters .form-label {
+                font-size: 0.95rem;
+            }
+            
+            .compact-filters .form-control,
+            .compact-filters .form-select {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1243,6 +1433,79 @@
             #leaderboardTable .honor-badge {
                 font-size: 0.65rem;
                 padding: 0.25rem 0.5rem;
+            }
+            
+            /* Filter section mobile adjustments */
+            .filter-section {
+                padding: 15px;
+            }
+            
+            .filter-section .form-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .filter-section .form-label i {
+                font-size: 0.8rem;
+            }
+            
+            .filter-section .form-select {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            /* Leaderboard search bar mobile adjustments */
+            #leaderboards-content .form-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            #leaderboards-content .form-label i {
+                font-size: 0.8rem;
+            }
+            
+            #leaderboards-content #leaderboardSearch {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            /* Compact filters mobile adjustments */
+            .compact-filters {
+                padding: 15px;
+            }
+            
+            .compact-filters .form-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .compact-filters .form-label i {
+                font-size: 0.8rem;
+            }
+            
+            .compact-filters .form-control,
+            .compact-filters .form-select {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            /* Search bar mobile adjustments */
+            #leaderboards-content .form-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            #leaderboards-content .form-label i {
+                font-size: 0.8rem;
+            }
+            
+            #leaderboards-content #leaderboardSearch {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+            
+            #leaderboards-content .section-title {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -1495,21 +1758,27 @@
                                     </button>
                                 </div>
                             </div>
-                            <h2 class="mb-2 dashboard-title">
-                                <i class="fas fa-book text-dark me-2"></i>Calculus 101
-                            </h2>
-                            <p class="text-muted" style="margin-left: 0;"><i class="fas fa-users me-1"></i>25 Students Enrolled</p>
+                            <div class="text-center">
+                                <h2 class="mb-2 dashboard-title">
+                                    <i class="fas fa-book text-dark me-2"></i>Calculus 101
+                                </h2>
+                                <p class="text-muted" style="margin-left: 0;"><i class="fas fa-users me-1"></i>25 Students Enrolled</p>
+                            </div>
                         </div>
 
                         <!-- Compact Filters -->
                         <div class="compact-filters">
-                            <div class="row g-2">
+                            <div class="row g-3">
                                 <div class="col-md-4 col-12">
-                                    <label class="form-label">Search</label>
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Name or ID..." onkeyup="filterStudents()" disabled>
+                                    <label class="form-label">
+                                        <i class="fas fa-search"></i> Search
+                                    </label>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search by Name or ID..." onkeyup="filterStudents()" disabled>
                                 </div>
                                 <div class="col-md-4 col-12">
-                                    <label class="form-label">Section</label>
+                                    <label class="form-label">
+                                        <i class="fas fa-users"></i> Section
+                                    </label>
                                     <select class="form-select" id="sectionFilter" onchange="onSectionChange()">
                                         <option value="">-- Select Section --</option>
                                         <option value="LA001" data-year="1st">LA001</option>
@@ -1520,7 +1789,9 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 col-12">
-                                    <label class="form-label">Year Level</label>
+                                    <label class="form-label">
+                                        <i class="fas fa-graduation-cap"></i> Year Level
+                                    </label>
                                     <input type="text" class="form-control" id="yearDisplay" readonly placeholder="--" style="background-color: #f8f9fa;">
                                 </div>
                             </div>
@@ -1698,29 +1969,35 @@
                 <div id="leaderboards-content" class="content">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="mb-3"><i class="fas fa-trophy"></i> Academic Leaderboards</h2>
+                            <h2 class="mb-4 section-title">
+                                <i class="fas fa-trophy text-dark"></i> Academic Leaderboards
+                            </h2>
 
                             <!-- Search Bar -->
-                            <div class="mb-3">
-                                <div class="input-group w-100">
-                                    <input type="text" class="form-control" id="leaderboardSearch" placeholder="Search students...">
-                                    <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
-                                </div>
+                            <div class="mb-4">
+                                <label for="leaderboardSearch" class="form-label">
+                                    <i class="fas fa-search"></i> Search
+                                </label>
+                                <input type="text" class="form-control" id="leaderboardSearch" placeholder="Search by Student ID or Name...">
                             </div>
 
                             <!-- Filter Section -->
-                            <div class="filter-section">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="academicYearFilter" class="form-label">Academic Year</label>
+                            <div class="filter-section mb-4">
+                                <div class="row g-3">
+                                    <div class="col-md-4 col-12">
+                                        <label for="academicYearFilter" class="form-label">
+                                            <i class="fas fa-calendar-alt me-1"></i> Academic Year
+                                        </label>
                                         <select class="form-select" id="academicYearFilter" onchange="filterLeaderboard()">
                                             <option value="2024-2025">2024 - 2025</option>
                                             <option value="2023-2024">2023 - 2024</option>
                                             <option value="2022-2023">2022 - 2023</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="honorFilter" class="form-label">Filter by Scholar Type</label>
+                                    <div class="col-md-4 col-12">
+                                        <label for="honorFilter" class="form-label">
+                                            <i class="fas fa-award me-1"></i> Filter by Scholar Type
+                                        </label>
                                         <select class="form-select" id="honorFilter" onchange="filterLeaderboard()">
                                             <option value="">All Scholars</option>
                                             <option value="University Scholar">University Scholar (1.00 - 1.45)</option>
@@ -1728,8 +2005,10 @@
                                             <option value="Dean's Lister">Dean's Lister (1.76 - 1.99)</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="departmentFilterLeaderboard" class="form-label">Filter by Department</label>
+                                    <div class="col-md-4 col-12">
+                                        <label for="departmentFilterLeaderboard" class="form-label">
+                                            <i class="fas fa-building me-1"></i> Filter by Department
+                                        </label>
                                         <select class="form-select" id="departmentFilterLeaderboard" onchange="filterLeaderboard()">
                                             <option value="">All Departments</option>
                                             <option value="BSCS">BSCS</option>

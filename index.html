@@ -1172,6 +1172,11 @@
             background: white;
         }
         
+        #leaderboardTable {
+            width: 100%;
+            margin-bottom: 0;
+        }
+        
         .gwa-display {
             font-size: 1rem;
             font-weight: normal;
@@ -1321,6 +1326,10 @@
                 margin-bottom: 1.5rem;
             }
             
+            #leaderboardTable {
+                min-width: 100%;
+            }
+            
             #leaderboardTable tbody td {
                 padding: 14px 12px;
                 font-size: 0.95rem;
@@ -1329,6 +1338,38 @@
             #leaderboardTable thead th {
                 padding: 14px 12px;
                 font-size: 0.9rem;
+            }
+            
+            /* Hide scroll hint on desktop */
+            #leaderboards-content .table-responsive::after {
+                display: none;
+            }
+            
+            /* Desktop: Restore full badge styling */
+            #leaderboardTable .honor-badge {
+                display: inline-block;
+                padding: 0.4rem 0.9rem !important;
+                border-radius: 20px;
+                font-size: 0.8rem !important;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            }
+            
+            #leaderboardTable .honor-badge.university-scholar {
+                background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+                color: #000 !important;
+            }
+            
+            #leaderboardTable .honor-badge.college-scholar {
+                background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%) !important;
+                color: #000 !important;
+            }
+            
+            #leaderboardTable .honor-badge.deans-lister {
+                background: linear-gradient(135deg, #800000 0%, #a52a2a 100%) !important;
+                color: #fff !important;
             }
             
             .filter-section {
@@ -1351,11 +1392,6 @@
             #leaderboards-content #leaderboardSearch {
                 padding: 0.75rem 1rem;
                 font-size: 1rem;
-            }
-            
-            .honor-badge {
-                font-size: 0.85rem;
-                padding: 0.45rem 1rem;
             }
             
             /* Compact filters desktop enhancements */
@@ -1417,22 +1453,59 @@
             
             /* Leaderboard table mobile adjustments */
             #leaderboardTable {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
+                width: 100%;
             }
             
             #leaderboardTable thead th {
-                font-size: 0.7rem;
-                padding: 8px 4px;
+                font-size: 0.6rem;
+                padding: 6px 2px;
+                letter-spacing: 0.2px;
             }
             
             #leaderboardTable tbody td {
-                font-size: 0.75rem;
-                padding: 8px 4px;
+                font-size: 0.7rem;
+                padding: 6px 2px;
+                white-space: normal;
+                word-wrap: break-word;
             }
             
+            #leaderboardTable tbody td:first-child {
+                font-size: 0.8rem;
+                font-weight: 700;
+            }
+            
+            /* Mobile: Remove badge styling, show as plain colored text */
             #leaderboardTable .honor-badge {
                 font-size: 0.65rem;
-                padding: 0.25rem 0.5rem;
+                padding: 0;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0;
+                text-transform: none;
+                letter-spacing: normal;
+                font-weight: 600;
+                display: inline;
+            }
+            
+            #leaderboardTable .honor-badge.university-scholar {
+                background: none !important;
+                color: #FF8C00 !important;
+            }
+            
+            #leaderboardTable .honor-badge.college-scholar {
+                background: none !important;
+                color: #808080 !important;
+            }
+            
+            #leaderboardTable .honor-badge.deans-lister {
+                background: none !important;
+                color: #800000 !important;
+            }
+            
+            /* Remove scroll hint on mobile since table now fits */
+            #leaderboards-content .table-responsive::after {
+                display: none;
             }
             
             /* Filter section mobile adjustments */
